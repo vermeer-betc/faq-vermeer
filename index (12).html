@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vermeer Chat - FAQ &amp; How To</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 56px;
+    background: #141414;
+    border-right: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    gap: 8px;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  .sidebar-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .sidebar-icon:hover { background: #2a2a2a; color: #aaa; }
+  .sidebar-icon.active { background: #d13f3f; color: white; }
+
+  .sidebar-icon svg { width: 18px; height: 18px; }
+
+  /* MAIN LAYOUT */
+  .main {
+    margin-left: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    height: 64px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    gap: 6px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .topbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 14px;
+    border: 1.5px solid #3a3a3a;
+    background: #222;
+    color: #999;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+
+  .topbar-btn svg { opacity: 0.6; }
+  .topbar-btn:hover { background: #2a2a2a; color: #ccc; border-color: #4a4a4a; }
+  .topbar-btn:hover svg { opacity: 0.8; }
+  .topbar-btn.active { background: #2a2a2a; border-color: #555; color: #f0f0f0; }
+  .topbar-btn.active svg { opacity: 1; }
+
+  /* CONTENT */
+  .content {
+    flex: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 32px 80px;
+    width: 100%;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .hero-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero p {
+    color: #888;
+    font-size: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    margin-bottom: 48px;
+  }
+
+  .search-box {
+    width: 100%;
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #e8e8e8;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-box::placeholder { color: #555; }
+  .search-box:focus { border-color: #555; }
+
+  /* SECTION TABS */
+  .section-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .tab {
+    padding: 10px 22px;
+    border-radius: 14px;
+    border: 1.5px solid #3a3a3a;
+    background: #222;
+    color: #999;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tab:hover { border-color: #4a4a4a; color: #ccc; background: #2a2a2a; }
+  .tab.active { background: #2a2a2a; border-color: #555; color: #f0f0f0; }
+
+  /* FAQ SECTION */
+  .faq-section {
+    margin-bottom: 40px;
+    display: none;
+  }
+
+  .faq-section.visible { display: block; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #555;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #252525;
+  }
+
+  /* STEP CARD (always open, no toggle) */
+  .step-card {
+    background: #232323;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .step-card:hover { border-color: rgba(255,255,255,0.22); }
+  .step-card-header {
+    padding: 16px 18px 0;
+    color: #f0f0f0;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .step-card-body {
+    padding: 12px 18px 18px;
+    color: #999;
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+  .step-card-body p { margin-bottom: 10px; }
+  .step-card-body ul { list-style: none; padding: 0; margin: 8px 0; }
+  .step-card-body ul li { padding: 3px 0 3px 16px; position: relative; }
+  .step-card-body ul li::before { content: '-'; position: absolute; left: 0; color: #555; }
+  .step-card-body strong { color: #d0d0d0; font-weight: 600; }
+  .step-card-body .figure { margin: 12px 0; }
+  .step-card-body .note {
+    margin-top: 10px; padding: 10px 14px; background: #1f1f1f;
+    border-left: 2px solid #d13f3f; border-radius: 0 6px 6px 0;
+    font-size: 13px; color: #777;
+  }
+  .step-card-body .note strong { color: #e8a5a5; }
+  .step-card-body .code-block { margin: 12px 0; }
+  .step-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #d13f3f; color: #fff; font-size: 11px; font-weight: 700;
+    margin-right: 10px; flex-shrink: 0;
+  }
+
+  /* ACCORDION */
+  .accordion-item {
+    background: #232323;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .accordion-item:hover {
+    border-color: rgba(255,255,255,0.22);
+  }
+
+  .accordion-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    color: #d0d0d0;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .accordion-question:hover { color: #f0f0f0; }
+  .accordion-question.open { color: #f0f0f0; }
+
+  .chevron {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: #555;
+    transition: transform 0.2s ease, color 0.15s;
+  }
+
+  .accordion-question.open .chevron {
+    transform: rotate(180deg);
+    color: #d13f3f;
+  }
+
+  .accordion-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease, padding 0.2s ease;
+  }
+
+  .accordion-answer.open {
+    max-height: 1600px;
+    padding-bottom: 18px;
+  }
+
+  .accordion-answer-inner {
+    color: #999;
+    font-size: 13.5px;
+    line-height: 1.75;
+    padding: 0 18px;
+  }
+
+  .accordion-answer-inner ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .accordion-answer-inner ul li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+
+  .accordion-answer-inner ul li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: #555;
+  }
+
+  .accordion-answer-inner ol {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+
+  .accordion-answer-inner ol li {
+    padding: 3px 0;
+    color: #999;
+  }
+
+  .accordion-answer-inner strong {
+    color: #d0d0d0;
+    font-weight: 600;
+  }
+
+  .accordion-answer-inner .tag {
+    display: inline-block;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    color: #888;
+    font-family: monospace;
+    margin: 2px 2px;
+  }
+
+  .accordion-answer-inner .note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #1f1f1f;
+    border-left: 2px solid #d13f3f;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: #777;
+  }
+  .go-article {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px; padding: 8px 14px;
+    background: rgba(209,63,63,0.12); border: 1px solid rgba(209,63,63,0.4);
+    border-radius: 8px; color: #e8a5a5; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; text-decoration: none;
+  }
+  .go-article:hover { background: rgba(209,63,63,0.2); color: #f0c0c0; }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 60px 0;
+    color: #555;
+    display: none;
+  }
+
+  .empty-state.visible { display: block; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: #444;
+    font-size: 12px;
+    border-top: 1px solid #222;
+  }
+
+  .footer a { color: #666; text-decoration: none; }
+  .footer a:hover { color: #999; }
+
+
+/* ===== HOW TO VIEW STYLES ===== */
+/* HOWTO LANDING CARDS */
+  .howto-landing {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .howto-landing-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .howto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .howto-card {
+    background: #232323;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .howto-card:hover { border-color: rgba(255,255,255,0.22); }
+  .howto-card.open {
+    grid-column: 1 / -1;
+  }
+  .howto-card-header {
+    padding: 28px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .howto-card-header h3 {
+    font-size: 17px; font-weight: 600; color: #f0f0f0; margin: 0 0 8px;
+  }
+  .howto-card-header .howto-preview {
+    font-size: 13px; color: #777; margin: 0; line-height: 1.6;
+  }
+  .howto-card-header .chevron {
+    width: 20px; height: 20px; flex-shrink: 0; color: #666;
+    transition: transform 0.2s; margin-top: 2px;
+  }
+  .howto-card.open .howto-card-header .chevron { transform: rotate(180deg); }
+  .howto-card-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  }
+  .howto-card.open .howto-card-body { max-height: 15000px; }
+  .howto-card-body-inner {
+    padding: 0 24px 28px; color: #999; font-size: 13.5px; line-height: 1.75;
+  }
+  .howto-article-page {
+    display: none;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    color: #999;
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+  .howto-article-page h1 {
+    font-size: 24px; color: #f0f0f0; font-weight: 700; margin: 0 0 8px;
+  }
+  .howto-article-page .article-intro {
+    color: #777; font-size: 14px; margin-bottom: 28px; line-height: 1.7;
+  }
+  .howto-article-page h2 { font-size: 18px; color: #f0f0f0; margin: 32px 0 12px; font-weight: 600; }
+  .howto-article-page p { margin-bottom: 10px; }
+  .howto-article-page strong { color: #d0d0d0; font-weight: 600; }
+  .howto-article-page ul { list-style: none; padding: 0; margin: 8px 0; }
+  .howto-article-page ul li { padding: 3px 0 3px 16px; position: relative; }
+  .howto-article-page ul li::before { content: '-'; position: absolute; left: 0; color: #555; }
+  .howto-back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 10px;
+    border: 1.5px solid #3a3a3a; background: #222;
+    color: #999; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s;
+    margin-bottom: 28px;
+  }
+  .howto-back-btn:hover { background: #2a2a2a; color: #ccc; border-color: #4a4a4a; }
+  .howto-breadcrumb {
+    font-size: 12px; color: #555; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .howto-breadcrumb span { color: #888; }
+  .howto-breadcrumb a {
+    color: #555; text-decoration: none; cursor: pointer;
+    transition: color 0.15s;
+  }
+  .howto-breadcrumb a:hover { color: #ccc; }
+  .howto-card-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 10px; font-size: 11px; color: #555;
+  }
+  .howto-card-meta span {
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .howto-search-wrap {
+    max-width: 420px; margin: 0 auto 28px; position: relative;
+  }
+  .howto-search-box {
+    width: 100%; padding: 12px 16px 12px 40px;
+    border-radius: 12px; border: 1px solid #333;
+    background: #1e1e1e; color: #e8e8e8;
+    font-size: 14px; outline: none; transition: border-color 0.15s;
+    box-sizing: border-box;
+  }
+  .howto-search-box:focus { border-color: #555; }
+  .howto-search-icon {
+    position: absolute; left: 14px; top: 50%;
+    transform: translateY(-50%); color: #555;
+  }
+
+/* DOC LAYOUT */
+  .doc-layout { display: flex; flex: 1; }
+
+  /* ARTICLE NAV (left) */
+  .doc-nav {
+    width: 280px;
+    flex-shrink: 0;
+    border-right: 1px solid #222;
+    padding: 32px 0;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+  .doc-nav-group { margin-bottom: 28px; }
+  .doc-nav-group-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.2px; color: #555; padding: 0 24px; margin-bottom: 10px;
+  }
+  .doc-nav-item {
+    display: block; padding: 9px 24px; color: #999; font-size: 13.5px;
+    cursor: pointer; border-left: 2px solid transparent; transition: all 0.15s;
+  }
+  .doc-nav-item:hover { color: #ddd; background: #1e1e1e; }
+  .doc-nav-item.active { color: #fff; border-left-color: #d13f3f; background: #1f1f1f; }
+
+  /* ARTICLE READING PANE (right) */
+  .doc-content {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px 48px 100px;
+    width: 100%;
+    transform: translateX(-60px);
+  }
+
+  .article { display: none; }
+  .article.visible { display: block; animation: fade 0.25s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px);} to {opacity:1; transform:none;} }
+
+  .article-kicker {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.5px; color: #d13f3f; margin-bottom: 12px;
+  }
+  .article h1 {
+    font-size: 30px; font-weight: 700; color: #f0f0f0;
+    letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.2;
+  }
+  .article-intro { color: #999; font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+
+  .article h2 {
+    font-size: 19px; font-weight: 650; color: #ececec;
+    margin: 40px 0 14px; letter-spacing: -0.2px;
+  }
+
+  /* collapsible article sections — same style as FAQ toggles */
+  .art-section {
+    background: #232323;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    margin: 10px 0; overflow: hidden;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .art-section:hover { border-color: rgba(255,255,255,0.22); }
+  .art-section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 4px 18px; cursor: pointer; user-select: none;
+  }
+  .art-section-header h2 { margin: 14px 0; font-size: 16px; font-weight: 600; color: #d0d0d0; }
+  .art-section:hover .art-section-header h2 { color: #f0f0f0; }
+  .art-section-chev {
+    flex-shrink: 0; width: 16px; height: 16px; color: #555;
+    transition: transform 0.2s ease, color 0.15s;
+  }
+  .art-section.collapsed .art-section-chev { transform: rotate(180deg); }
+  .art-section:not(.collapsed) .art-section-chev { color: #d13f3f; }
+  .art-section-body { padding: 0 18px 8px; }
+  .art-section.collapsed .art-section-body { display: none; }
+  .article h3 {
+    font-size: 15px; font-weight: 600; color: #ddd; margin: 26px 0 8px;
+  }
+  .article p { color: #aaa; font-size: 14px; line-height: 1.75; margin-bottom: 14px; }
+  .article strong { color: #e0e0e0; font-weight: 600; }
+  .article ul, .article ol { margin: 12px 0 16px; padding-left: 4px; }
+  .article ul li, .article ol li {
+    color: #aaa; font-size: 14px; line-height: 1.7; margin-bottom: 8px;
+    list-style: none; padding-left: 22px; position: relative;
+  }
+  .article ul li::before {
+    content: ''; position: absolute; left: 6px; top: 11px;
+    width: 5px; height: 5px; border-radius: 50%; background: #d13f3f;
+  }
+  .article ol { counter-reset: step; }
+  .article ol li { counter-increment: step; }
+  .article ol li::before {
+    content: counter(step); position: absolute; left: 0; top: 1px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #d13f3f; color: #fff; font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* STEP NUMBER for tutorial flow */
+  .step {
+    display: flex; gap: 16px; margin-bottom: 4px;
+    padding-bottom: 28px;
+  }
+  .step-num {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: #d13f3f; color: white; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-body { flex: 1; padding-top: 2px; }
+  .step-body h3 { margin-top: 2px; }
+
+  /* CALLOUT */
+  .callout {
+    background: #1f1f1f; border-left: 2px solid #d13f3f;
+    border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 18px 0;
+    font-size: 13.5px; color: #aaa; line-height: 1.65;
+  }
+  .callout strong { color: #e8a5a5; }
+  .callout.info { border-left-color: #5a8dcc; }
+  .callout.info strong { color: #9cc3ee; }
+
+  /* FIGURE / SCHEMA */
+  .figure {
+    margin: 22px 0;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .figure svg { max-width: 100%; height: auto; }
+  .figure-caption {
+    margin-top: 14px; font-size: 12px; color: #666; font-style: italic;
+  }
+  .capture-placeholder {
+    background: repeating-linear-gradient(45deg, #1c1c1c, #1c1c1c 10px, #1f1f1f 10px, #1f1f1f 20px);
+    border: 1px dashed #3a3a3a; border-radius: 8px;
+    padding: 40px 20px; color: #666; font-size: 13px;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-block; background: #2a2a2a; border: 1px solid #3a3a3a;
+    border-radius: 4px; padding: 1px 7px; font-size: 12px; color: #bbb;
+    font-family: monospace;
+  }
+  .beta-tag {
+    display: inline-block; background: rgba(140,90,200,0.15);
+    border: 1px solid rgba(140,90,200,0.4); color: #b48ce0;
+    border-radius: 10px; padding: 1px 8px; font-size: 10px; font-weight: 600;
+    vertical-align: middle; margin-left: 4px;
+  }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: #141414; border: 1px solid #2a2a2a; border-radius: 10px;
+    padding: 16px 18px; margin: 16px 0; font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12.5px; color: #c0c0c0; line-height: 1.7; white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .code-block .c-head { color: #d13f3f; font-weight: 600; }
+  .code-block .c-comment { color: #666; }
+
+  /* PILL ROW */
+  .next-prev {
+    display: flex; justify-content: space-between; margin-top: 56px;
+    padding-top: 24px; border-top: 1px solid #252525; gap: 12px;
+  }
+  .np-btn {
+    flex: 1; padding: 14px 18px; border: 1px solid #2a2a2a; border-radius: 10px;
+    background: #1c1c1c; cursor: pointer; transition: all 0.15s; text-align: left;
+  }
+  .np-btn:hover { border-color: #444; background: #222; }
+  .np-btn.right { text-align: right; }
+  .np-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .np-title { font-size: 13.5px; color: #ddd; margin-top: 4px; }
+  .np-btn[disabled] { opacity: 0.3; cursor: default; }
+
+  .footer {
+    text-align: center; padding: 24px; color: #444; font-size: 12px;
+    border-top: 1px solid #222;
+  }
+  .footer a { color: #666; text-decoration: none; }
+  .footer a:hover { color: #999; }
+
+  /* schema reusable text styles */
+  .s-label { font: 600 12px -apple-system, sans-serif; fill: #ddd; }
+  .s-sub { font: 400 10px -apple-system, sans-serif; fill: #888; }
+  .s-pill-text { font: 600 11px -apple-system, sans-serif; fill: #fff; }
+
+
+/* view switching */
+.view { display: none; }
+.view.visible { display: block; }
+#view-howto .doc-layout { min-height: calc(100vh - 64px); }
+</style>
+</head>
+<body>
+
+<!-- MAIN -->
+
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar" style="justify-content: center;">
+    <button class="topbar-btn active" id="tab-howto" onclick="switchView('howto')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      How To
+    </button>
+    <button class="topbar-btn" id="tab-faq" onclick="switchView('faq')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18h6"/>
+        <path d="M10 22h4"/>
+        <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+      </svg>
+      FAQ
+    </button>
+  </div>
+
+  <!-- ===== FAQ VIEW ===== -->
+  <div class="view" id="view-faq">
+  <!-- CONTENT -->
+
+  <div class="content">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-icon" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#111;border-radius:16px;margin-bottom:12px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18h6"/>
+          <path d="M10 22h4"/>
+          <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+        </svg>
+      </div>
+      <h1>FAQ Vermeer Chat</h1>
+      <p>Tout ce que vous avez toujours voulu savoir sur Vermeer Chat, et que vous n'avez pas osé demander à l'IA.</p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <input class="search-box" type="text" placeholder="Rechercher une question..." id="searchInput" oninput="filterFAQ()" />
+    </div>
+
+    <!-- TABS -->
+    <div class="section-tabs">
+      <button class="tab active" onclick="showSection('all', this)">Tous</button>
+      <button class="tab" onclick="showSection('generalites', this)">Généralités</button>
+      <button class="tab" onclick="showSection('compte', this)">Tokens et budget</button>
+      <button class="tab" onclick="showSection('modeles', this)">Les modèles</button>
+      <button class="tab" onclick="showSection('agents', this)">Les assistants</button>
+      <button class="tab" onclick="showSection('skills', this)">Les skills</button>
+      <button class="tab" onclick="showSection('bugs', this)">Bugs et support</button>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState">
+      Aucune question ne correspond à votre recherche.
+    </div>
+
+    <!-- GENERALITES -->
+    <div class="faq-section visible" id="section-generalites">
+      <div class="section-label">Généralités</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Qu'est-ce que Vermeer Chat ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            L'outil IA du groupe BETC, mis à disposition de ses équipes. Un environnement sécurisé pour accéder aux meilleurs modèles du marché, GPT, Claude, Gemini, sans exposer vos données ni celles de vos clients. Contrairement aux outils publics, vos conversations ne servent pas à réentraîner les modèles. Ce que vous tapez ici reste ici.
+            <div class="note"><strong>Bonne pratique.</strong> Même dans un environnement sécurisé, pensez toujours à anonymiser les données clients avant de les utiliser dans vos prompts.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPTE ET ACCES -->
+    <div class="faq-section visible" id="section-compte">
+      <div class="section-label">Tokens et budget</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Qu'est-ce qu'un token ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            En pratique, un échange standard coûte entre <strong>$0.01 et $0.05</strong>. Une conversation longue avec un document dense peut monter à $0.30. Le token est l'unité de mesure derrière ces coûts : chaque mot envoyé ou reçu consomme des tokens, et le prix varie selon le modèle utilisé.
+            <div class="note"><strong>Astuce.</strong> Un modèle plus performant consomme plus de tokens par échange. Si votre consommation semble élevée, vérifiez d'abord le modèle choisi et la configuration de vos assistants.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Que représente mon budget ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Un crédit mensuel en dollars alloué à votre compte pour couvrir les tokens consommés. Il s'affiche en temps réel en bas de l'interface. Budget standard : <strong>$10 par mois</strong>, réinitialisé chaque mois.
+            <div class="note"><strong>Les modèles basiques sont souvent aussi performants que les dernières versions, y compris pour des tâches semi-complexes, et consomment nettement moins de budget.</strong></div>
+            <div class="note"><span style="color:#d13f3f;font-weight:700;">&#9888; Attention.</span> Les fichiers de référence (RAG) de vos assistants sont retraités à chaque échange. Un assistant chargé de fichiers lourds consommera significativement plus de budget qu'un assistant léger. Pour limiter la consommation, précisez dans votre message quel fichier consulter (ex : "en te basant sur le fichier X, ...") plutôt que de laisser l'assistant scanner tout le corpus.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          J'ai atteint mon plafond de tokens, qui peut le débloquer ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Votre <strong>entity manager</strong> peut ajuster votre plafond et débloquer du budget. Contactez l'assistant de votre entité :
+            <p><strong>BETC Fullsix</strong> - Stéphane Tyrmi (<a href="mailto:stephane.tyrmi@betc.com" style="color:#d13f3f;text-decoration:none;">stephane.tyrmi@betc.com</a>) ou Chloé Amgar (<a href="mailto:chloe.amgar@betc.com" style="color:#d13f3f;text-decoration:none;">chloe.amgar@betc.com</a>)</p>
+            <p><strong>Prose on Pixels</strong> - Lobna Diab-Benterki (<a href="mailto:lobna.diab-benterki@proseonpixels.com" style="color:#d13f3f;text-decoration:none;">lobna.diab-benterki@proseonpixels.com</a>)</p>
+            <p><strong>BETC</strong> - contact à venir</p>
+            <a class="go-article" onclick="goToArticle('seuils', 3)">
+              Lire l'article : Gestion de budget
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODELES -->
+    <div class="faq-section visible" id="section-modeles">
+      <div class="section-label">Les modèles</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Quel modèle choisir ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Trois familles disponibles, trois profils d'usage :
+              <p><strong>GPT (OpenAI)</strong> : la majorité des tâches quotidiennes. Polyvalent, rapide, bien calibré pour la rédaction et l'analyse standard.</p>
+              <p><strong>Claude (Anthropic)</strong> : privilégiez-le pour les tâches complexes, documents longs, raisonnement nuancé, écriture à fort enjeu éditorial.</p>
+              <p><strong>Gemini (Google)</strong> : tâches rapides et répétitives, analyse de visuels, recherche web intégrée.</p>
+            Règle simple : commencez par GPT. Montez en puissance si le résultat ne vous satisfait pas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          À quoi sert le réglage de créativité ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Le curseur va de 0 à 1.5 et contrôle le degré d'imprévisibilité des réponses :
+            <ul>
+              <li><strong>0 à 0.3</strong> : réponses précises et factuelles, idéal pour l'analyse, les résumés, les calculs.</li>
+              <li><strong>0.4 à 0.7</strong> : équilibre entre fiabilité et originalité, rédaction, conversation, recommandations.</li>
+              <li><strong>0.8 à 1.5</strong> : idées variées et inattendues, brainstorming, concepts créatifs, exploration.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Qu'est-ce que la réflexion approfondie ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Le modèle prend le temps de structurer son raisonnement avant de répondre. Les réponses sont plus précises sur les sujets complexes. En contrepartie : plus lent, et plus gourmand en tokens. À réserver aux tâches qui le méritent.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AGENTS -->
+    <div class="faq-section visible" id="section-agents">
+      <div class="section-label">Les assistants</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Comment créer un assistant ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            <ol>
+              <li>Cliquez sur "+ Créer un nouvel assistant"</li>
+              <li>Renseignez le nom, la catégorie (Créa / Stratégique / Production / Média / Général), le fournisseur et le modèle</li>
+              <li>Rédigez vos instructions dans le champ dédié, en markdown, en suivant une structure claire</li>
+              <li>Cliquez sur "Créer"</li>
+              <li>Une fois sauvegardé, vous pouvez uploader vos fichiers de référence</li>
+            </ol>
+            Ces étapes sont détaillées et illustrées pas à pas dans le How To. Pour maîtriser la rédaction de prompts et d'instructions, suivez la formation <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="color:#d13f3f;text-decoration:none;font-weight:600;">Prof IA →</a>
+            <a class="go-article" onclick="goToArticle('assistant', 0)">
+              Lire l'article : Créer un assistant de A à Z
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Qu'est-ce que les fichiers de référence ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Le corpus documentaire de votre assistant, charte de marque, grille tarifaire, méthodologie interne. L'assistant s'y réfère pour répondre plutôt que de s'appuyer uniquement sur ses connaissances générales. Plus le corpus est précis, plus les réponses le sont.
+            <div class="note">L'assistant doit être sauvegardé avant de pouvoir uploader des fichiers. Limite : <strong>10 fichiers maximum</strong> par assistant.</div>
+            <div class="note"><strong>Attention à la consommation.</strong> Chaque fichier de référence est retraité à chaque échange, ce qui peut faire monter la facture rapidement, surtout avec des fichiers lourds (Excel, PDF volumineux). Ne chargez que les fichiers strictement nécessaires, privilégiez des fichiers légers et bien structurés, et orientez l'assistant vers un ou deux fichiers spécifiques dans votre prompt plutôt que de le laisser scanner tout le corpus.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Comment fonctionne la mémoire ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Deux niveaux de mémoire par assistant :
+            <ul>
+              <li><strong>Mémoire partagée</strong> : visible par toutes les personnes qui ont accès à l'assistant. Utile pour stocker des règles ou du contexte commun.</li>
+              <li><strong>Mes mémoires</strong> : personnelles, propres à votre usage de cet assistant. Non visibles par les autres.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Comment partager un assistant ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Via le bouton de partage en bas de la configuration. Une fois partagé, l'assistant apparaît dans la Marketplace pour vos collègues. Vous pouvez aussi partager une conversation spécifique : en cours d'échange, ouvrez les <strong>trois points (···)</strong> de la conversation pour choisir de la partager. Côté assistant, la vue « Conversations partagées » rassemble tous ces échanges.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Comment restaurer une ancienne version ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Chaque modification crée une version horodatée. Accessible via le bouton "Version" dans la configuration, vous pouvez restaurer n'importe quelle version précédente à tout moment.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="faq-section visible" id="section-skills">
+      <div class="section-label">Les skills</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Qu'est-ce qu'un skill ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Un skill est une instruction réutilisable que vous pouvez attacher à un assistant pour lui donner une compétence spécifique (un format de restitution, une méthodologie, un formalisme client). Vous pouvez les créer depuis la section Skills, les partager par export/import, et les activer sur un assistant via ses Outils avancés. Il est aussi possible d'invoquer un skill directement dans une conversation en tapant <span class="tag">$</span> dans la barre de saisie.
+            <div class="note">Fonctionnalité avancée, en cours de stabilisation. Pour la majorité des usages, les instructions du system prompt suffisent.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUGS -->
+    <div class="faq-section visible" id="section-bugs">
+      <div class="section-label">Bugs et support</div>
+
+      <div class="accordion-item">
+        <button class="accordion-question" onclick="toggleAccordion(this)">
+          Comment signaler un bug ?
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-answer">
+          <div class="accordion-answer-inner">
+            Utilisez le bouton <strong>Signaler un problème</strong> dans l'interface, ou remplissez directement le formulaire dédié. Renseignez :
+            <ul>
+              <li>Description du problème</li>
+              <li>Navigateur utilisé</li>
+              <li>Capture d'écran</li>
+              <li>Message d'erreur exact</li>
+            </ul>
+            Plus c'est précis, plus c'est rapide à corriger.
+            <a class="go-article" href="https://forms.office.com/Pages/ResponsePage.aspx?id=V1Xtx8ilNUSfq62nq83AGzFnptTmHWRHtEcGK5Z0aWRUMDdTM1QySzJKRk42STFTSjVRRTFOTDZNMi4u" target="_blank" rel="noopener">
+              Ouvrir le formulaire de signalement
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- ===== HOW TO VIEW ===== -->
+  <div class="view visible" id="view-howto">
+    <div class="howto-landing">
+
+      <div class="howto-landing-header">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#111;border-radius:16px;margin-bottom:12px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div style="font-size:20px;font-weight:600;color:#f0f0f0;letter-spacing:-0.3px;">How To</div>
+        <div style="font-size:13px;color:#666;margin-top:4px;">Guide Vermeer Chat</div>
+      </div>
+
+      <div class="howto-search-wrap">
+        <svg class="howto-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="howto-search-box" type="text" placeholder="Rechercher dans les guides..." id="howtoSearchInput" oninput="filterHowtoCards()" />
+      </div>
+
+      <div class="howto-grid">
+
+      <div class="howto-card" onclick="openHowtoArticle(0)" style="cursor:pointer;">
+        <div class="howto-card-header">
+          <div>
+            <h3>Créer un assistant de A à Z</h3>
+            <p class="howto-preview">Du formulaire vierge à l'assistant partagé : identité, moteur, niveau de créativité, instructions système, fichiers de référence et partage avec l'équipe.</p>
+            <div class="howto-card-meta">
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~8 min</span>
+              <span>9 étapes</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      <div class="howto-card" onclick="openHowtoArticle(1)" style="cursor:pointer;">
+        <div class="howto-card-header">
+          <div>
+            <h3>Maîtriser les skills</h3>
+            <p class="howto-preview">Les skills sont des blocs d'instructions réutilisables que vous pouvez attacher à plusieurs assistants. Apprenez à les créer, les combiner et les partager.</p>
+            <div class="howto-card-meta">
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~5 min</span>
+              <span>4 sections</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      <div class="howto-card" onclick="openHowtoArticle(2)" style="cursor:pointer;">
+        <div class="howto-card-header">
+          <div>
+            <h3>Le prompt engineering</h3>
+            <p class="howto-preview">Les principes clés du prompt engineering et accès à la formation Prof IA pour aller plus loin.</p>
+            <div class="howto-card-meta">
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~2 min</span>
+              <span>+ formation Prof IA</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      <div class="howto-card" onclick="openHowtoArticle(3)" style="cursor:pointer;">
+        <div class="howto-card-header">
+          <div>
+            <h3>Gestion de budget</h3>
+            <p class="howto-preview">Les seuils budgétaires, les contacts par entité et les règles de gouvernance de la plateforme Vermeer Chat.</p>
+            <div class="howto-card-meta">
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~4 min</span>
+              <span>3 sections</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      </div> <!-- /howto-grid -->
+
+
+            <div class="howto-article-page">
+        <div class="howto-breadcrumb">
+          <a onclick="backToHowtoGrid()">How To</a>
+          <span>&#8250;</span>
+          <span>Créer un assistant de A à Z</span>
+        </div>
+        <button class="howto-back-btn" onclick="backToHowtoGrid()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour
+        </button>
+        <h1>Créer un assistant de A à Z</h1>
+        <p class="article-intro">Un assistant, c'est un collaborateur sur mesure : vous définissez sa mission, son savoir et sa façon de répondre, une fois pour toutes.</p>
+
+        <h2>Vue d'ensemble</h2>
+        <p>La création d'un assistant se fait dans un panneau unique, découpé en trois temps : <strong>l'identité</strong> (qui il est), <strong>le moteur</strong> (comment il réfléchit) et <strong>le savoir</strong> (ce sur quoi il s'appuie).</p>
+
+        <h2>Étape par étape</h2>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">1</span>Lancer la création</div>
+          <div class="step-card-body">
+            <p>Dans le panneau de gauche, cliquez sur <span class="tag">+ Créer un nouvel assistant</span>. Un formulaire vierge s'ouvre. Vous retrouverez tous vos assistants existants via <strong>Mes assistants</strong>, et ceux partagés par l'agence via la <strong>Marketplace</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">2</span>Donner une identité</div>
+          <div class="step-card-body">
+            <div class="figure">
+              <svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="480" height="220" rx="10" fill="#141414" stroke="#2a2a2a"/>
+                <text x="20" y="30" class="s-label">Nom<tspan fill="#d13f3f">*</tspan></text>
+                <rect x="20" y="38" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="36" y="59" class="s-sub">Facultatif : Le nom de l'assistant</text>
+                <text x="20" y="94" class="s-label">Description</text>
+                <rect x="20" y="102" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="36" y="123" class="s-sub">Décrivez votre Assistant ici (facultatif)</text>
+                <text x="20" y="158" class="s-label">Catégorie<tspan fill="#d13f3f">*</tspan></text>
+                <rect x="20" y="166" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="48" y="187" class="s-sub" fill="#ccc">&#128450;  Général</text>
+                <text x="442" y="187" class="s-sub" fill="#666">&#x25BE;</text>
+              </svg>
+            </div>
+            <p>Renseignez le <strong>nom</strong> et une <strong>description</strong>. Choisissez une <strong>catégorie</strong> (Créa, Stratégique, Production, Média ou Général).</p>
+            <div class="note"><strong>Astuce.</strong> Un nom explicite vaut mieux qu'un nom malin. « Générateur de piliers éditoriaux » se retrouve, « ÉditoBot 3000 » se perd.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">3</span>Choisir le moteur</div>
+          <div class="step-card-body">
+            <div class="figure">
+              <svg viewBox="0 0 480 156" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="480" height="156" rx="10" fill="#141414" stroke="#2a2a2a"/>
+                <text x="20" y="30" class="s-label">Fournisseur<tspan fill="#d13f3f">*</tspan></text>
+                <rect x="20" y="38" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="36" y="59" class="s-sub" fill="#ccc">Anthropic</text>
+                <text x="442" y="59" class="s-sub" fill="#666">&#x25BE;</text>
+                <text x="20" y="94" class="s-label">Modèle<tspan fill="#d13f3f">*</tspan></text>
+                <rect x="20" y="102" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="36" y="123" class="s-sub" fill="#ccc">Claude Opus 4.7 (Puissant)</text>
+                <text x="442" y="123" class="s-sub" fill="#666">&#x25BE;</text>
+              </svg>
+            </div>
+            <p>Sélectionnez le <strong>fournisseur</strong> puis le <strong>modèle</strong>.</p>
+            <ul>
+              <li><strong>GPT</strong> pour la majorité des tâches : rapide, polyvalent.</li>
+              <li><strong>Claude</strong> pour le complexe : documents longs, nuance éditoriale.</li>
+              <li><strong>Gemini</strong> pour le rapide et le visuel.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">4</span>Régler le niveau de créativité</div>
+          <div class="step-card-body">
+            <div class="figure">
+              <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+                <text x="30" y="28" class="s-label">Créativité de la réponse</text>
+                <rect x="290" y="12" width="44" height="22" rx="11" fill="#2a2a2a" stroke="#444"/>
+                <text x="312" y="28" class="s-sub" text-anchor="middle" fill="#ccc">1.00</text>
+                <rect x="30" y="46" width="370" height="5" rx="2.5" fill="#d13f3f"/>
+                <rect x="400" y="46" width="30" height="5" rx="2.5" fill="#333"/>
+                <circle cx="396" cy="48" r="9" fill="#1a1a1a" stroke="#888" stroke-width="2"/>
+                <text x="30" y="78" class="s-sub" fill="#9cc3ee">0 - 0.3</text>
+                <text x="30" y="94" class="s-sub">Factuel : analyse, résumés, calculs</text>
+                <text x="200" y="78" class="s-sub" fill="#e8c97a">0.4 - 0.7</text>
+                <text x="200" y="94" class="s-sub">Équilibré : rédaction, conseil</text>
+                <text x="370" y="78" class="s-sub" fill="#e8a5a5">0.8 - 1.5</text>
+                <text x="370" y="94" class="s-sub">Créatif : idéation, concepts</text>
+                <g transform="translate(30,118)">
+                  <text x="0" y="-4" class="s-label">Réflexion approfondie</text>
+                  <rect x="0" y="6" width="36" height="20" rx="10" fill="#d13f3f"/>
+                  <circle cx="22" cy="16" r="7.5" fill="#fff"/>
+                  <text x="46" y="20" class="s-sub" fill="#888">Le modèle structure sa pensée</text>
+                </g>
+                <g transform="translate(30,162)">
+                  <text x="0" y="-4" class="s-label">Recherche web</text>
+                  <rect x="0" y="6" width="36" height="20" rx="10" fill="#d13f3f"/>
+                  <circle cx="22" cy="16" r="7.5" fill="#fff"/>
+                  <text x="46" y="20" class="s-sub" fill="#888">L'assistant peut consulter des sources en ligne</text>
+                </g>
+              </svg>
+            </div>
+            <p>Trois réglages complémentaires pour affiner le comportement du moteur.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">5</span>Rédiger les instructions (system prompt)</div>
+          <div class="step-card-body">
+            <div class="figure">
+              <svg viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="480" height="120" rx="10" fill="#141414" stroke="#2a2a2a"/>
+                <text x="20" y="28" class="s-label">Instructions</text>
+                <rect x="20" y="36" width="440" height="64" rx="6" fill="#1e1e1e" stroke="#333"/>
+                <text x="36" y="57" class="s-sub">Les instructions système que l'assistant utilise</text>
+              </svg>
+            </div>
+            <p>C'est <strong>le coeur de l'assistant</strong>. Une structure simple et éprouvée :</p>
+            <div class="code-block"><span class="c-head"># RÔLE</span>
+Qui est l'assistant, à qui il s'adresse.
+
+<span class="c-head"># OBJECTIF</span>
+Sa mission en une phrase active.
+
+<span class="c-head"># CONTEXTE ET RÉFÉRENCES</span>
+Priorise les fichiers fournis.
+
+<span class="c-head"># TÂCHES</span>
+Ce qu'il fait, étape par étape.
+
+<span class="c-head"># LIMITES</span>
+Ce qu'il ne fait pas, où rediriger.
+
+<span class="c-head"># FORMAT</span>
+Langue, longueur, structure, ton.</div>
+            <div class="note"><strong>Restez sous ~400 mots.</strong> Au-delà, le modèle dilue les premières consignes.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">6</span>Nourrir l'assistant : fichiers de référence (RAG)</div>
+          <div class="step-card-body">
+            <div class="figure">
+              <svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="480" height="180" rx="10" fill="#141414" stroke="#2a2a2a"/>
+                <text x="20" y="28" class="s-label">Fichiers de référence</text>
+                <rect x="20" y="40" width="14" height="14" rx="3" fill="transparent" stroke="#555"/>
+                <text x="42" y="52" class="s-sub" fill="#bbb">Activer la recherche de fichiers (i)</text>
+                <rect x="20" y="64" width="440" height="74" rx="8" fill="#1a1a1a" stroke="#333" stroke-dasharray="4 3"/>
+                <text x="240" y="97" class="s-sub" text-anchor="middle" fill="#666">↑</text>
+                <text x="240" y="114" class="s-sub" text-anchor="middle" fill="#666">Glissez vos fichiers ici</text>
+                <text x="20" y="158" class="s-sub" fill="#666">L'assistant doit être créé avant de pouvoir télécharger des fichiers.</text>
+              </svg>
+            </div>
+            <p>Les fichiers de référence forment le <strong>corpus documentaire</strong> de l'assistant. Le system prompt décrit le <strong>comportement</strong>, le RAG porte la <strong>connaissance</strong>. Limite : <strong>10 fichiers maximum</strong> par assistant.</p>
+            <div class="note"><strong>Attention.</strong> Les fichiers de référence sont retraités à chaque message, ce qui impacte directement votre consommation de tokens. 10 fichiers Excel chargés = un coût multiplié à chaque échange. Chargez uniquement ce dont l'assistant a besoin et précisez dans vos instructions quels fichiers consulter en priorité.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">7</span>Gérer la mémoire</div>
+          <div class="step-card-body">
+            <p>Deux niveaux de mémoire :</p>
+            <ul>
+              <li><strong>Mémoire partagée</strong> : visible par tous ceux qui ont accès à l'assistant.</li>
+              <li><strong>Mes mémoires</strong> : personnelles, propres à votre usage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">8</span>Versionner et restaurer</div>
+          <div class="step-card-body">
+            <p>Chaque modification crée une <strong>version horodatée</strong>. Ouvrez l'historique via le bouton <span class="tag">Version</span> et restaurez n'importe quel état précédent.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-header"><span class="step-pill">9</span>Partager avec l'équipe</div>
+          <div class="step-card-body">
+            <p>Partagez via le bouton dédié : l'assistant rejoint la <strong>Marketplace</strong> et devient utilisable par vos collègues.</p>
+            <div class="note"><strong>Bonne hygiène de partage.</strong> Limitez les droits de gestion à une ou deux personnes. Laissez les utilisateurs finaux en simple lecture. Gardez le corpus RAG à jour.</div>
+          </div>
+        </div>
+
+        <div class="next-prev" style="justify-content:flex-end;">
+          <button class="np-btn right" style="flex:none;max-width:280px;" onclick="openHowtoArticle(1)">
+            <div class="np-label">Suivant</div>
+            <div class="np-title">Maîtriser les skills →</div>
+          </button>
+        </div>
+
+      </div>
+
+<div class="howto-article-page">
+        <div class="howto-breadcrumb">
+          <a onclick="backToHowtoGrid()">How To</a>
+          <span>&#8250;</span>
+          <span>Maîtriser les skills</span>
+        </div>
+        <button class="howto-back-btn" onclick="backToHowtoGrid()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour
+        </button>
+        <h1>Maîtriser les skills</h1>
+        <p class="article-intro">Si un assistant est un collaborateur, un skill est une compétence qu'il peut mobiliser. Vous l'écrivez une fois, il s'applique partout. C'est la façon la plus efficace de capitaliser votre savoir-faire métier.</p>
+
+        <h2>Le principe</h2>
+        <p>Un <strong>skill</strong> est une instruction persistante, réutilisable dans toutes vos conversations. Là où le system prompt d'un assistant est figé dans cet assistant, un skill est <strong>transversal</strong> : une fois créé, il devient un outil que n'importe quel assistant peut solliciter selon le besoin.</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+            <!-- modal backdrop -->
+            <rect x="0" y="0" width="560" height="340" rx="14" fill="#1a1a1a" stroke="#333"/>
+            <!-- title + close -->
+            <text x="36" y="40" style="font:700 16px -apple-system,sans-serif; fill:#f0f0f0;">Créer un skill</text>
+            <text x="530" y="36" style="font:300 20px -apple-system,sans-serif; fill:#666; cursor:pointer;">&#x00D7;</text>
+
+            <!-- Nom -->
+            <text x="36" y="72" class="s-sub" fill="#bbb">Nom</text>
+            <rect x="36" y="80" width="488" height="34" rx="6" fill="#1e1e1e" stroke="#555"/>
+            <text x="52" y="102" class="s-sub">Ex. Charte éditoriale POP</text>
+
+            <!-- Description -->
+            <text x="36" y="136" class="s-sub" fill="#bbb">Description</text>
+            <rect x="36" y="144" width="488" height="40" rx="6" fill="#1e1e1e" stroke="#444"/>
+            <text x="52" y="169" class="s-sub">Ex. Appliquer la charte éditoriale POP/BETC aux présentations et documents...</text>
+
+            <!-- Instructions -->
+            <text x="36" y="208" class="s-sub" fill="#bbb">Instructions</text>
+            <rect x="36" y="216" width="488" height="70" rx="6" fill="#1e1e1e" stroke="#444"/>
+            <text x="52" y="241" class="s-sub">Décrivez ici les instructions de votre skill, au format markdown...</text>
+
+            <!-- buttons -->
+            <rect x="380" y="302" width="72" height="30" rx="6" fill="transparent" stroke="#444"/>
+            <text x="416" y="322" class="s-sub" text-anchor="middle" fill="#ccc">Annuler</text>
+            <rect x="462" y="302" width="62" height="30" rx="6" fill="#d13f3f" opacity="0.7"/>
+            <text x="493" y="322" class="s-sub" text-anchor="middle" fill="#fff">Créer</text>
+          </svg>
+          <div class="figure-caption">La fenêtre de création d'un skill</div>
+        </div>
+
+        <h2>Créer un skill</h2>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Ouvrir le créateur</h3>
+            <p>Depuis la section Skills de la navigation, cliquez sur <span class="tag">+ Créer un skill</span>. Trois champs vous attendent : nom, description, instructions.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Remplir les trois champs</h3>
+            <ul>
+              <li><strong>Nom</strong> : explicite, car c'est ce que le modèle repère pour décider d'activer le skill.</li>
+              <li><strong>Description</strong> : quand et pourquoi l'utiliser, en une phrase.</li>
+              <li><strong>Instructions</strong> : la méthode, le format de sortie, les exemples, en markdown.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Bien rédiger un skill</h2>
+        <p>La règle d'or : <strong>une compétence par skill</strong>. Un skill n'est pas un assistant miniature, c'est une brique unitaire.</p>
+        <ul>
+          <li>Visez le précis : « format de restitution d'audit SEO » plutôt que « aide marketing ».</li>
+          <li>Décrivez le savoir-faire, pas juste la tâche : c'est <em>votre</em> manière de faire qui a de la valeur.</li>
+          <li>Donnez un exemple de sortie attendue : il vaut dix lignes de description.</li>
+        </ul>
+        <div class="callout"><strong>Par où commencer ?</strong> Listez les tâches que vous répétez chaque semaine avec les mêmes exigences de format. Ce sont vos premiers skills, ceux qui vous feront gagner le plus de temps.</div>
+
+        <h2>Importer et partager</h2>
+        <p>Un skill se partage par <strong>export de fichier</strong>. Formats acceptés à l'import :</p>
+        <ul>
+          <li>un fichier <span class="tag">.md</span> avec nom et description en YAML ;</li>
+          <li>un fichier <span class="tag">.zip</span> ou <span class="tag">.skill</span> contenant un <span class="tag">SKILL.md</span>.</li>
+        </ul>
+        <p>Votre collègue clique sur <strong>Importer un skill</strong>, dépose le fichier, et la compétence rejoint son espace. C'est ainsi qu'une bonne pratique individuelle devient un standard d'équipe.</p>
+
+        <h2>Activer un skill sur un assistant</h2>
+        <p>Dans les <strong>Outils avancés</strong> de l'assistant, activez l'interrupteur <span class="tag">Skills</span>, puis <span class="tag">Add Skills</span> pour choisir ceux à mobiliser.</p>
+        <div class="callout"><strong>Note.</strong> La fonctionnalité skills est en cours de stabilisation. En attendant qu'elle soit pleinement active, vous pouvez toujours intégrer la méthode directement dans les instructions de l'assistant.</div>
+
+        <div class="next-prev">
+          <button class="np-btn" onclick="openHowtoArticle(0)">
+            <div class="np-label">Précédent</div>
+            <div class="np-title">← Créer un assistant</div>
+          </button>
+          <button class="np-btn right" onclick="openHowtoArticle(2)">
+            <div class="np-label">Suivant</div>
+            <div class="np-title">Le prompt engineering →</div>
+          </button>
+      </div>
+
+      
+      </div>
+<div class="howto-article-page">
+        <div class="howto-breadcrumb">
+          <a onclick="backToHowtoGrid()">How To</a>
+          <span>&#8250;</span>
+          <span>Le prompt engineering</span>
+        </div>
+        <button class="howto-back-btn" onclick="backToHowtoGrid()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour
+        </button>
+        <h1>Le prompt engineering</h1>
+        <p class="article-intro">Savoir parler à un modèle IA, ça s'apprend. Plutôt que de survoler le sujet ici, on vous a préparé une vraie formation.</p>
+
+        <div style="background:#1e1e1e;border:1.5px solid #333;border-radius:14px;padding:28px;margin:24px 0;text-align:center;">
+          <div style="font-size:11px;color:#d13f3f;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Formation recommandée</div>
+          <div style="font-size:20px;font-weight:700;color:#f0f0f0;margin-bottom:8px;">Prof IA</div>
+          <p style="color:#888;font-size:13px;line-height:1.6;max-width:440px;margin:0 auto 20px;">La formation complète pour maîtriser le prompt engineering : structure, ton, exemples, itération, garde-fous. Indispensable avant de créer vos premiers assistants.</p>
+          <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="display:inline-block;padding:12px 28px;background:#d13f3f;color:#fff;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:opacity 0.15s;">Accéder à la formation →</a>
+        </div>
+
+        <h2>En résumé</h2>
+        <p>Un bon prompt repose sur trois principes : <strong>être structuré</strong> (rôle, objectif, tâches, limites, format), <strong>être direct</strong> (impératif, positif, concret) et <strong>poser des garde-fous</strong> (périmètre, confidentialité, gestion de l'ambiguïté). Visez moins de 400 mots pour un system prompt.</p>
+        <p>Le system prompt décrit le <strong>comportement</strong>, les fichiers de référence portent la <strong>connaissance</strong>. Ne mélangez pas les deux.</p>
+
+        <div class="next-prev">
+          <button class="np-btn" onclick="openHowtoArticle(1)">
+            <div class="np-label">Précédent</div>
+            <div class="np-title">← Maîtriser les skills</div>
+          </button>
+          <button class="np-btn right" onclick="openHowtoArticle(3)">
+            <div class="np-label">Suivant</div>
+            <div class="np-title">Gestion de budget →</div>
+          </button>
+      </div>
+
+      
+      </div>
+<div class="howto-article-page">
+        <div class="howto-breadcrumb">
+          <a onclick="backToHowtoGrid()">How To</a>
+          <span>&#8250;</span>
+          <span>Gestion de budget</span>
+        </div>
+        <button class="howto-back-btn" onclick="backToHowtoGrid()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour
+        </button>
+        <h1>Gestion de budget</h1>
+        <p class="article-intro">Votre budget, vos contacts et les seuils de la plateforme.</p>
+
+        <h3>Vos contacts par entité</h3>
+        <p>Pour toute demande liée à votre budget, contactez l'assistant de votre entité :</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0;">
+          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Prose on Pixels</div>
+            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
+            <div style="min-height:60px;">
+              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Colin Lhernould</div>
+              <a href="mailto:colin.lhernould@proseonpixels.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;margin-bottom:6px;">colin.lhernould@proseonpixels.com</a>
+              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Lobna Diab-Benterki</div>
+              <a href="mailto:lobna.diab-benterki@proseonpixels.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;">lobna.diab-benterki<br>@proseonpixels.com</a>
+            </div>
+            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Benjamin Coton</div>
+            <a href="mailto:benjamin.coton@ext.betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">benjamin.coton@ext.betc.com</a>
+            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Pierre-Charles Hegron</div>
+            <a href="mailto:pierre-charles.hegron@betc.com" style="font-size:11px;color:#888;text-decoration:none;">pierre-charles.hegron@betc.com</a>
+          </div>
+          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC</div>
+            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contact</div>
+            <div style="min-height:60px;">
+              <div style="font-size:13px;color:#999;font-style:italic;">[nom et email à venir]</div>
+            </div>
+            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Charles Bonneaux</div>
+            <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">charles.bonneaux@betc.com</a>
+            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Charles Bonneaux</div>
+            <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;">charles.bonneaux@betc.com</a>
+          </div>
+          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC Fullsix</div>
+            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
+            <div style="min-height:60px;">
+              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Chloé Amgar</div>
+              <a href="mailto:chloe.amgar@betc.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;margin-bottom:6px;">chloe.amgar@betc.com</a>
+              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Stéphane Tyrmi</div>
+              <a href="mailto:stephane.tyrmi@betc.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;">stephane.tyrmi@betc.com</a>
+            </div>
+            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Jonathan Casseron</div>
+            <a href="mailto:jonathan.casseron@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">jonathan.casseron@betc.com</a>
+            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Florence Lezoray</div>
+            <a href="mailto:florence.lezoray@betc.com" style="font-size:11px;color:#888;text-decoration:none;">florence.lezoray@betc.com</a>
+          </div>
+        </div>
+
+        <div class="callout"><strong>Le bon réflexe.</strong> Avant de relever un plafond, vérifiez que la consommation vient d'un usage utile et non d'un assistant mal configuré.</div>
+
+        <h2>Les seuils en pratique</h2>
+        <p>Le budget standard est de <strong>10 $ par mois</strong> par compte, réinitialisé chaque mois et affiché en temps réel en bas de l'interface. D'autres plafonds encadrent l'usage :</p>
+        <ul>
+          <li><strong>Mémoire</strong> : partagée et personnelle, gérées séparément par assistant.</li>
+        </ul>
+
+        <div class="figure">
+          <svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg">
+            <text x="280" y="28" class="s-label" text-anchor="middle">Budget mensuel</text>
+            <rect x="140" y="42" width="280" height="16" rx="8" fill="#333"/>
+            <rect x="140" y="42" width="108" height="16" rx="8" fill="#d13f3f"/>
+            <text x="280" y="78" class="s-sub" text-anchor="middle">$3.86 / $10.00</text>
+          </svg>
+          <div class="figure-caption">Les principaux seuils, visibles dans l'interface</div>
+        </div>
+
+        <div class="next-prev" style="justify-content:flex-start;">
+          <button class="np-btn" style="flex:none;max-width:280px;" onclick="openHowtoArticle(2)">
+            <div class="np-label">Précédent</div>
+            <div class="np-title">← Le prompt engineering</div>
+          </button>
+        </div>
+
+
+
+    
+      </div>
+
+</div> <!-- /howto-landing -->
+  </div> <!-- /view-howto -->
+
+  <div class="footer" style="border-top:1px solid #333;padding:16px 0;text-align:center;font-size:13px;color:#888;">
+    Powered by <a href="https://vermeer.ai" target="_blank" style="color:#aaa;text-decoration:none;">Vermeer.ai</a> &nbsp;<span style="color:#555;">|</span>&nbsp; <a href="https://vermeer.ai/cookie-policy" target="_blank" style="color:#888;text-decoration:none;">Politique de confidentialit&eacute;</a> &nbsp;<span style="color:#555;">|</span>&nbsp; <a href="https://vermeer.ai/legal-notice" target="_blank" style="color:#888;text-decoration:none;">Conditions d'utilisation</a>
+  </div>
+
+</div>
+
+<script>
+  // ----- howto card → full page -----
+  function openHowtoArticle(idx) {
+    document.querySelector('.howto-grid').style.display = 'none';
+    document.querySelector('.howto-landing-header').style.display = 'none';
+    var searchWrap = document.querySelector('.howto-search-wrap');
+    if (searchWrap) searchWrap.style.display = 'none';
+    var articles = document.querySelectorAll('.howto-article-page');
+    articles.forEach(function(a) { a.style.display = 'none'; });
+    articles[idx].style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+  function backToHowtoGrid() {
+    document.querySelector('.howto-grid').style.display = '';
+    document.querySelector('.howto-landing-header').style.display = '';
+    var searchWrap = document.querySelector('.howto-search-wrap');
+    if (searchWrap) searchWrap.style.display = '';
+    document.querySelectorAll('.howto-article-page').forEach(function(a) { a.style.display = 'none'; });
+    window.scrollTo(0, 0);
+  }
+
+  // ----- howto search -----
+  function filterHowtoCards() {
+    var query = document.getElementById('howtoSearchInput').value.toLowerCase();
+    var cards = document.querySelectorAll('.howto-card');
+    cards.forEach(function(card) {
+      var text = card.textContent.toLowerCase();
+      card.style.display = text.includes(query) ? '' : 'none';
+    });
+  }
+
+  // ----- view switching -----
+  function switchView(v) {
+    document.getElementById('view-faq').classList.toggle('visible', v === 'faq');
+    document.getElementById('view-howto').classList.toggle('visible', v === 'howto');
+    document.getElementById('tab-faq').classList.toggle('active', v === 'faq');
+    document.getElementById('tab-howto').classList.toggle('active', v === 'howto');
+    if (v === 'howto') { backToHowtoGrid(); }
+    window.scrollTo(0, 0);
+  }
+
+  // ----- jump from a FAQ answer to a How To article -----
+  function goToArticle(id, navIndex) {
+    switchView('howto');
+    const navEl = document.querySelectorAll('.doc-nav-item')[navIndex];
+    showArticle(id, navEl);
+  }
+
+  // ----- FAQ scripts -----
+
+  function toggleAccordion(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.accordion-question.open').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+
+    // Open this one if it was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  function showSection(id, tabEl) {
+    // Update tabs
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tabEl.classList.add('active');
+
+    // Show/hide sections
+    document.querySelectorAll('.faq-section').forEach(s => {
+      if (id === 'all') {
+        s.classList.add('visible');
+      } else {
+        s.classList.toggle('visible', s.id === 'section-' + id);
+      }
+    });
+
+    // Clear search
+    document.getElementById('searchInput').value = '';
+    document.getElementById('emptyState').classList.remove('visible');
+  }
+
+  function filterFAQ() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    // Reset tabs
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.tab').classList.add('active');
+
+    let anyVisible = false;
+
+    document.querySelectorAll('.faq-section').forEach(section => {
+      let sectionVisible = false;
+      section.querySelectorAll('.accordion-item').forEach(item => {
+        const q = item.querySelector('.accordion-question').textContent.toLowerCase();
+        const a = item.querySelector('.accordion-answer-inner').textContent.toLowerCase();
+        const match = !query || q.includes(query) || a.includes(query);
+        item.style.display = match ? '' : 'none';
+        if (match) sectionVisible = true;
+      });
+      section.classList.toggle('visible', sectionVisible || !query);
+      if (sectionVisible) anyVisible = true;
+    });
+
+    document.getElementById('emptyState').classList.toggle('visible', !anyVisible && !!query);
+  }
+
+
+  // ----- How To scripts -----
+
+  function showArticle(id, navEl) {
+    document.querySelectorAll('.article').forEach(a => a.classList.remove('visible'));
+    document.getElementById('article-' + id).classList.add('visible');
+
+    document.querySelectorAll('.doc-nav-item').forEach(n => n.classList.remove('active'));
+    if (navEl) navEl.classList.add('active');
+
+    document.querySelector('.doc-content').scrollTo(0, 0);
+    window.scrollTo(0, 0);
+  }
+
+  // ----- make each article H2 section collapsible (toggle + arrow) -----
+  (function buildCollapsibleSections() {
+    const chevron = '<svg class="art-section-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
+    document.querySelectorAll('.article').forEach(article => {
+      const nodes = Array.from(article.childNodes);
+      let current = null;
+      nodes.forEach(node => {
+        if (node.nodeType === 1 && node.tagName === 'H2') {
+          // start a new collapsible section
+          const section = document.createElement('div');
+          section.className = 'art-section';
+          const header = document.createElement('div');
+          header.className = 'art-section-header';
+          header.innerHTML = node.outerHTML + chevron;
+          const body = document.createElement('div');
+          body.className = 'art-section-body';
+          section.appendChild(header);
+          section.appendChild(body);
+          article.insertBefore(section, node);
+          node.remove();
+          header.addEventListener('click', () => section.classList.toggle('collapsed'));
+          current = body;
+        } else if (current && !(node.nodeType === 1 && node.classList && node.classList.contains('next-prev'))) {
+          current.appendChild(node);
+        }
+      });
+    });
+  })();
+
+</script>
+
+</body>
+</html>
