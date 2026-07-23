@@ -9,10 +9,10 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #1a1a1a;
+    background: #0a0a0b;
     color: #e8e8e8;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
     display: flex;
     min-height: 100vh;
@@ -47,7 +47,7 @@
   }
 
   .sidebar-icon:hover { background: #2a2a2a; color: #aaa; }
-  .sidebar-icon.active { background: #d13f3f; color: white; }
+  .sidebar-icon.active { background: #e33f4f; color: white; }
 
   .sidebar-icon svg { width: 18px; height: 18px; }
 
@@ -62,7 +62,7 @@
   /* TOPBAR */
   .topbar {
     height: 64px;
-    background: #1a1a1a;
+    background: #0a0a0b;
     border-bottom: 1px solid #2a2a2a;
     display: flex;
     align-items: center;
@@ -80,11 +80,11 @@
     align-items: center;
     gap: 10px;
     padding: 12px 28px;
-    border-radius: 14px;
-    border: 1.5px solid #3a3a3a;
-    background: #222;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.14);
+    background: #141416;
     color: #999;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s;
@@ -92,9 +92,8 @@
   }
 
   .topbar-btn svg { opacity: 0.6; }
-  .topbar-btn:hover { background: #2a2a2a; color: #ccc; border-color: #4a4a4a; }
-  .topbar-btn:hover svg { opacity: 0.8; }
-  .topbar-btn.active { background: #2a2a2a; border-color: #555; color: #f0f0f0; }
+  .topbar-btn:hover { background: #1c1c1e; color: #ccc; border-color: rgba(255,255,255,0.24); }
+  .topbar-btn.active { background: #1f1f22; color: #f0f0f0; font-weight: 600; border-color: rgba(255,255,255,0.3); }
   .topbar-btn.active svg { opacity: 1; }
 
   /* CONTENT */
@@ -119,7 +118,7 @@
   }
 
   .hero h1 {
-    font-size: 32px;
+    font-size: 33px;
     font-weight: 700;
     color: #f0f0f0;
     margin-bottom: 12px;
@@ -128,7 +127,8 @@
 
   .hero p {
     color: #888;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
     max-width: 480px;
     margin: 0 auto;
     line-height: 1.7;
@@ -141,18 +141,18 @@
 
   .search-box {
     width: 100%;
-    background: #222;
-    border: 1px solid #333;
+    background: #2c2c2e;
+    border: 1px solid #3a3a3a;
     border-radius: 12px;
     padding: 14px 16px;
     color: #e8e8e8;
-    font-size: 14px;
+    font-size: 15px;
     outline: none;
     transition: border-color 0.15s;
   }
 
-  .search-box::placeholder { color: #555; }
-  .search-box:focus { border-color: #555; }
+  .search-box::placeholder { color: #6a6a6a; }
+  .search-box:focus { border-color: #e33f4f; }
 
   /* SECTION TABS */
   .section-tabs {
@@ -163,20 +163,32 @@
   }
 
   .tab {
-    padding: 10px 22px;
-    border-radius: 14px;
-    border: 1.5px solid #3a3a3a;
-    background: #222;
-    color: #999;
-    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 20px 12px;
+    border-radius: 12px 12px 0 0;
+    border: none;
+    background: #141416;
+    color: #a1a1a9;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s;
     white-space: nowrap;
+    position: relative;
   }
 
-  .tab:hover { border-color: #4a4a4a; color: #ccc; background: #2a2a2a; }
-  .tab.active { background: #2a2a2a; border-color: #555; color: #f0f0f0; }
+  .tab:hover { color: #ccc; background: #1c1c1e; }
+  .tab.active { background: #1f1f22; color: #fff; font-weight: 700; }
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background: #fff;
+    border-radius: 0;
+  }
 
   /* FAQ SECTION */
   .faq-section {
@@ -187,7 +199,7 @@
   .faq-section.visible { display: block; }
 
   .section-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.2px;
@@ -199,9 +211,9 @@
 
   /* STEP CARD (always open, no toggle) */
   .step-card {
-    background: #232323;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
+    background: #1c1c1e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
     margin-bottom: 10px;
     overflow: hidden;
     transition: border-color 0.15s;
@@ -210,7 +222,7 @@
   .step-card-header {
     padding: 16px 18px 0;
     color: #f0f0f0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -219,7 +231,7 @@
   .step-card-body {
     padding: 12px 18px 18px;
     color: #999;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.75;
   }
   .step-card-body p { margin-bottom: 10px; }
@@ -230,23 +242,23 @@
   .step-card-body .figure { margin: 12px 0; }
   .step-card-body .note {
     margin-top: 10px; padding: 10px 14px; background: #1f1f1f;
-    border-left: 2px solid #d13f3f; border-radius: 0 6px 6px 0;
-    font-size: 13px; color: #777;
+    border-left: 2px solid #e33f4f; border-radius: 0 6px 6px 0;
+    font-size: 14px; color: #777;
   }
   .step-card-body .note strong { color: #e8a5a5; }
   .step-card-body .code-block { margin: 12px 0; }
   .step-pill {
     display: inline-flex; align-items: center; justify-content: center;
     width: 22px; height: 22px; border-radius: 50%;
-    background: #d13f3f; color: #fff; font-size: 11px; font-weight: 700;
+    background: #e33f4f; color: #fff; font-size: 11px; font-weight: 700;
     margin-right: 10px; flex-shrink: 0;
   }
 
   /* ACCORDION */
   .accordion-item {
-    background: #232323;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
+    background: #1c1c1e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
     margin-bottom: 10px;
     overflow: hidden;
     transition: border-color 0.15s, background 0.15s;
@@ -268,7 +280,7 @@
     gap: 16px;
     cursor: pointer;
     color: #d0d0d0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     transition: color 0.15s;
   }
@@ -286,7 +298,7 @@
 
   .accordion-question.open .chevron {
     transform: rotate(180deg);
-    color: #d13f3f;
+    color: #e33f4f;
   }
 
   .accordion-answer {
@@ -302,7 +314,7 @@
 
   .accordion-answer-inner {
     color: #999;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.75;
     padding: 0 18px;
   }
@@ -346,7 +358,7 @@
     border: 1px solid #3a3a3a;
     border-radius: 4px;
     padding: 2px 8px;
-    font-size: 12px;
+    font-size: 14px;
     color: #888;
     font-family: monospace;
     margin: 2px 2px;
@@ -356,19 +368,19 @@
     margin-top: 10px;
     padding: 10px 14px;
     background: #1f1f1f;
-    border-left: 2px solid #d13f3f;
+    border-left: 2px solid #e33f4f;
     border-radius: 0 6px 6px 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #777;
   }
   .go-article {
     display: inline-flex; align-items: center; gap: 6px;
     margin-top: 10px; padding: 8px 14px;
-    background: rgba(209,63,63,0.12); border: 1px solid rgba(209,63,63,0.4);
-    border-radius: 8px; color: #e8a5a5; font-size: 13px; font-weight: 500;
+    background: rgba(227,63,79,0.12); border: 1px solid rgba(227,63,79,0.4);
+    border-radius: 8px; color: #e8a5a5; font-size: 14px; font-weight: 500;
     cursor: pointer; transition: all 0.15s; text-decoration: none;
   }
-  .go-article:hover { background: rgba(209,63,63,0.2); color: #f0c0c0; }
+  .go-article:hover { background: rgba(227,63,79,0.2); color: #f0c0c0; }
 
   /* EMPTY STATE */
   .empty-state {
@@ -410,9 +422,9 @@
     gap: 14px;
   }
   .howto-card {
-    background: #232323;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
+    background: #1c1c1e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
     overflow: hidden;
     transition: border-color 0.15s;
     display: flex;
@@ -431,10 +443,10 @@
     gap: 16px;
   }
   .howto-card-header h3 {
-    font-size: 17px; font-weight: 600; color: #f0f0f0; margin: 0 0 8px;
+    font-size: 18px; font-weight: 600; color: #f0f0f0; margin: 0 0 8px;
   }
   .howto-card-header .howto-preview {
-    font-size: 13px; color: #777; margin: 0; line-height: 1.6;
+    font-size: 14px; font-weight: 500; color: #888; margin: 0; line-height: 1.6;
   }
   .howto-card-header .chevron {
     width: 20px; height: 20px; flex-shrink: 0; color: #666;
@@ -454,16 +466,16 @@
     margin: 0 auto;
     padding: 0 24px 80px;
     color: #999;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.75;
   }
   .howto-article-page h1 {
-    font-size: 24px; color: #f0f0f0; font-weight: 700; margin: 0 0 8px;
+    font-size: 25px; color: #f0f0f0; font-weight: 700; margin: 0 0 8px;
   }
   .howto-article-page .article-intro {
-    color: #777; font-size: 14px; margin-bottom: 28px; line-height: 1.7;
+    color: #888; font-size: 16px; font-weight: 500; margin-bottom: 28px; line-height: 1.7;
   }
-  .howto-article-page h2 { font-size: 18px; color: #f0f0f0; margin: 32px 0 12px; font-weight: 600; }
+  .howto-article-page h2 { font-size: 19px; color: #f0f0f0; margin: 32px 0 12px; font-weight: 600; }
   .howto-article-page p { margin-bottom: 10px; }
   .howto-article-page strong { color: #d0d0d0; font-weight: 600; }
   .howto-article-page ul { list-style: none; padding: 0; margin: 8px 0; }
@@ -471,15 +483,15 @@
   .howto-article-page ul li::before { content: '-'; position: absolute; left: 0; color: #555; }
   .howto-back-btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 20px; border-radius: 10px;
-    border: 1.5px solid #3a3a3a; background: #222;
-    color: #999; font-size: 13px; font-weight: 500;
+    padding: 10px 20px; border-radius: 999px;
+    border: 1.5px solid rgba(255,255,255,0.14); background: #141416;
+    color: #9b9baa; font-size: 14px; font-weight: 500;
     cursor: pointer; transition: all 0.15s;
     margin-bottom: 28px;
   }
-  .howto-back-btn:hover { background: #2a2a2a; color: #ccc; border-color: #4a4a4a; }
+  .howto-back-btn:hover { background: #1c1c1e; color: #ccc; border-color: rgba(255,255,255,0.24); }
   .howto-breadcrumb {
-    font-size: 12px; color: #555; margin-bottom: 20px;
+    font-size: 13px; color: #555; margin-bottom: 20px;
     display: flex; align-items: center; gap: 6px;
   }
   .howto-breadcrumb span { color: #888; }
@@ -500,117 +512,18 @@
   }
   .howto-search-box {
     width: 100%; padding: 12px 16px 12px 40px;
-    border-radius: 12px; border: 1px solid #333;
-    background: #1e1e1e; color: #e8e8e8;
-    font-size: 14px; outline: none; transition: border-color 0.15s;
+    border-radius: 12px; border: 1px solid #3a3a3a;
+    background: #2c2c2e; color: #e8e8e8;
+    font-size: 15px; outline: none; transition: border-color 0.15s;
     box-sizing: border-box;
   }
-  .howto-search-box:focus { border-color: #555; }
+  .howto-search-box:focus { border-color: #e33f4f; }
   .howto-search-icon {
     position: absolute; left: 14px; top: 50%;
     transform: translateY(-50%); color: #555;
   }
 
-/* DOC LAYOUT */
-  .doc-layout { display: flex; flex: 1; }
-
-  /* ARTICLE NAV (left) */
-  .doc-nav {
-    width: 280px;
-    flex-shrink: 0;
-    border-right: 1px solid #222;
-    padding: 32px 0;
-    position: sticky;
-    top: 64px;
-    height: calc(100vh - 64px);
-    overflow-y: auto;
-  }
-  .doc-nav-group { margin-bottom: 28px; }
-  .doc-nav-group-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.2px; color: #555; padding: 0 24px; margin-bottom: 10px;
-  }
-  .doc-nav-item {
-    display: block; padding: 9px 24px; color: #999; font-size: 13.5px;
-    cursor: pointer; border-left: 2px solid transparent; transition: all 0.15s;
-  }
-  .doc-nav-item:hover { color: #ddd; background: #1e1e1e; }
-  .doc-nav-item.active { color: #fff; border-left-color: #d13f3f; background: #1f1f1f; }
-
-  /* ARTICLE READING PANE (right) */
-  .doc-content {
-    flex: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 48px 48px 100px;
-    width: 100%;
-    transform: translateX(-60px);
-  }
-
-  .article { display: none; }
-  .article.visible { display: block; animation: fade 0.25s ease; }
-  @keyframes fade { from { opacity: 0; transform: translateY(6px);} to {opacity:1; transform:none;} }
-
-  .article-kicker {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.5px; color: #d13f3f; margin-bottom: 12px;
-  }
-  .article h1 {
-    font-size: 30px; font-weight: 700; color: #f0f0f0;
-    letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.2;
-  }
-  .article-intro { color: #999; font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
-
-  .article h2 {
-    font-size: 19px; font-weight: 650; color: #ececec;
-    margin: 40px 0 14px; letter-spacing: -0.2px;
-  }
-
-  /* collapsible article sections — same style as FAQ toggles */
-  .art-section {
-    background: #232323;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    margin: 10px 0; overflow: hidden;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .art-section:hover { border-color: rgba(255,255,255,0.22); }
-  .art-section-header {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px; padding: 4px 18px; cursor: pointer; user-select: none;
-  }
-  .art-section-header h2 { margin: 14px 0; font-size: 16px; font-weight: 600; color: #d0d0d0; }
-  .art-section:hover .art-section-header h2 { color: #f0f0f0; }
-  .art-section-chev {
-    flex-shrink: 0; width: 16px; height: 16px; color: #555;
-    transition: transform 0.2s ease, color 0.15s;
-  }
-  .art-section.collapsed .art-section-chev { transform: rotate(180deg); }
-  .art-section:not(.collapsed) .art-section-chev { color: #d13f3f; }
-  .art-section-body { padding: 0 18px 8px; }
-  .art-section.collapsed .art-section-body { display: none; }
-  .article h3 {
-    font-size: 15px; font-weight: 600; color: #ddd; margin: 26px 0 8px;
-  }
-  .article p { color: #aaa; font-size: 14px; line-height: 1.75; margin-bottom: 14px; }
-  .article strong { color: #e0e0e0; font-weight: 600; }
-  .article ul, .article ol { margin: 12px 0 16px; padding-left: 4px; }
-  .article ul li, .article ol li {
-    color: #aaa; font-size: 14px; line-height: 1.7; margin-bottom: 8px;
-    list-style: none; padding-left: 22px; position: relative;
-  }
-  .article ul li::before {
-    content: ''; position: absolute; left: 6px; top: 11px;
-    width: 5px; height: 5px; border-radius: 50%; background: #d13f3f;
-  }
-  .article ol { counter-reset: step; }
-  .article ol li { counter-increment: step; }
-  .article ol li::before {
-    content: counter(step); position: absolute; left: 0; top: 1px;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: #d13f3f; color: #fff; font-size: 11px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .article-intro { color: #999; font-size: 15px; font-weight: 500; line-height: 1.7; margin-bottom: 16px; }
 
   /* STEP NUMBER for tutorial flow */
   .step {
@@ -619,7 +532,7 @@
   }
   .step-num {
     flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
-    background: #d13f3f; color: white; font-weight: 700; font-size: 14px;
+    background: #e33f4f; color: white; font-weight: 700; font-size: 15px;
     display: flex; align-items: center; justify-content: center;
   }
   .step-body { flex: 1; padding-top: 2px; }
@@ -627,9 +540,9 @@
 
   /* CALLOUT */
   .callout {
-    background: #1f1f1f; border-left: 2px solid #d13f3f;
+    background: #1f1f1f; border-left: 2px solid #e33f4f;
     border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 18px 0;
-    font-size: 13.5px; color: #aaa; line-height: 1.65;
+    font-size: 14.5px; color: #aaa; line-height: 1.65;
   }
   .callout strong { color: #e8a5a5; }
   .callout.info { border-left-color: #5a8dcc; }
@@ -657,13 +570,13 @@
   /* TAG */
   .tag {
     display: inline-block; background: #2a2a2a; border: 1px solid #3a3a3a;
-    border-radius: 4px; padding: 1px 7px; font-size: 12px; color: #bbb;
+    border-radius: 4px; padding: 1px 7px; font-size: 13px; color: #bbb;
     font-family: monospace;
   }
   .beta-tag {
     display: inline-block; background: rgba(140,90,200,0.15);
     border: 1px solid rgba(140,90,200,0.4); color: #b48ce0;
-    border-radius: 10px; padding: 1px 8px; font-size: 10px; font-weight: 600;
+    border-radius: 10px; padding: 1px 8px; font-size: 11px; font-weight: 600;
     vertical-align: middle; margin-left: 4px;
   }
 
@@ -674,7 +587,7 @@
     font-size: 12.5px; color: #c0c0c0; line-height: 1.7; white-space: pre-wrap;
     overflow-x: auto;
   }
-  .code-block .c-head { color: #d13f3f; font-weight: 600; }
+  .code-block .c-head { color: #e33f4f; font-weight: 600; }
   .code-block .c-comment { color: #666; }
 
   /* PILL ROW */
@@ -688,8 +601,8 @@
   }
   .np-btn:hover { border-color: #444; background: #222; }
   .np-btn.right { text-align: right; }
-  .np-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
-  .np-title { font-size: 13.5px; color: #ddd; margin-top: 4px; }
+  .np-label { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .np-title { font-size: 14.5px; color: #ddd; margin-top: 4px; }
   .np-btn[disabled] { opacity: 0.3; cursor: default; }
 
   .footer {
@@ -708,7 +621,6 @@
 /* view switching */
 .view { display: none; }
 .view.visible { display: block; }
-#view-howto .doc-layout { min-height: calc(100vh - 64px); }
 </style>
 </head>
 <body>
@@ -730,6 +642,15 @@
         <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
       </svg>
       FAQ
+    </button>
+    <button class="topbar-btn" id="tab-contacts" onclick="switchView('contacts')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      Contacts
     </button>
   </div>
 
@@ -760,12 +681,12 @@
     <!-- TABS -->
     <div class="section-tabs">
       <button class="tab active" onclick="showSection('all', this)">Tous</button>
-      <button class="tab" onclick="showSection('generalites', this)">Généralités</button>
-      <button class="tab" onclick="showSection('compte', this)">Tokens et budget</button>
-      <button class="tab" onclick="showSection('modeles', this)">Les modèles</button>
-      <button class="tab" onclick="showSection('agents', this)">Les assistants</button>
-      <button class="tab" onclick="showSection('skills', this)">Les skills</button>
-      <button class="tab" onclick="showSection('bugs', this)">Bugs et support</button>
+      <button class="tab" onclick="showSection('generalites', this)">📘 Généralités</button>
+      <button class="tab" onclick="showSection('compte', this)">💰 Tokens et budget</button>
+      <button class="tab" onclick="showSection('modeles', this)">🧠 Les modèles</button>
+      <button class="tab" onclick="showSection('agents', this)">🤖 Les assistants</button>
+      <button class="tab" onclick="showSection('skills', this)">🧩 Les skills</button>
+      <button class="tab" onclick="showSection('bugs', this)">🐞 Bugs et support</button>
     </div>
 
     <!-- EMPTY STATE -->
@@ -817,7 +738,7 @@
           <div class="accordion-answer-inner">
             Un crédit mensuel en dollars alloué à votre compte pour couvrir les tokens consommés. Il s'affiche en temps réel en bas de l'interface. Budget standard : <strong>$10 par mois</strong>, réinitialisé chaque mois.
             <div class="note"><strong>Les modèles basiques sont souvent aussi performants que les dernières versions, y compris pour des tâches semi-complexes, et consomment nettement moins de budget.</strong></div>
-            <div class="note"><span style="color:#d13f3f;font-weight:700;">&#9888; Attention.</span> Les fichiers de référence (RAG) de vos assistants sont retraités à chaque échange. Un assistant chargé de fichiers lourds consommera significativement plus de budget qu'un assistant léger. Pour limiter la consommation, précisez dans votre message quel fichier consulter (ex : "en te basant sur le fichier X, ...") plutôt que de laisser l'assistant scanner tout le corpus.</div>
+            <div class="note"><span style="color:#e33f4f;font-weight:700;">&#9888; Attention.</span> Les fichiers de référence (RAG) de vos assistants sont retraités à chaque échange. Un assistant chargé de fichiers lourds consommera significativement plus de budget qu'un assistant léger. Pour limiter la consommation, précisez dans votre message quel fichier consulter (ex : "en te basant sur le fichier X, ...") plutôt que de laisser l'assistant scanner tout le corpus.</div>
           </div>
         </div>
       </div>
@@ -830,9 +751,9 @@
         <div class="accordion-answer">
           <div class="accordion-answer-inner">
             Votre <strong>entity manager</strong> peut ajuster votre plafond et débloquer du budget. Contactez l'assistant de votre entité :
-            <p><strong>BETC Fullsix</strong> - Stéphane Tyrmi (<a href="mailto:stephane.tyrmi@betc.com" style="color:#d13f3f;text-decoration:none;">stephane.tyrmi@betc.com</a>) ou Chloé Amgar (<a href="mailto:chloe.amgar@betc.com" style="color:#d13f3f;text-decoration:none;">chloe.amgar@betc.com</a>)</p>
-            <p><strong>Prose on Pixels</strong> - Lobna Diab-Benterki (<a href="mailto:lobna.diab-benterki@proseonpixels.com" style="color:#d13f3f;text-decoration:none;">lobna.diab-benterki@proseonpixels.com</a>)</p>
-            <p><strong>BETC</strong> - contact à venir</p>
+            <p><strong>BETC Fullsix</strong> - Stéphane Tyrmi (<a href="mailto:stephane.tyrmi@betc.com" style="color:#e33f4f;text-decoration:none;">stephane.tyrmi@betc.com</a>) ou Chloé Amgar (<a href="mailto:chloe.amgar@betc.com" style="color:#e33f4f;text-decoration:none;">chloe.amgar@betc.com</a>)</p>
+            <p><strong>Prose on Pixels</strong> - Lobna Diab-Benterki (<a href="mailto:lobna.diab-benterki@proseonpixels.com" style="color:#e33f4f;text-decoration:none;">lobna.diab-benterki@proseonpixels.com</a>)</p>
+            <p><strong>BETC</strong> - Stéphane Langouet (<a href="mailto:stephane.langouet@betc.com" style="color:#e33f4f;text-decoration:none;">stephane.langouet@betc.com</a>)</p>
             <a class="go-article" onclick="goToArticle('seuils', 3)">
               Lire l'article : Gestion de budget
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -862,35 +783,6 @@
         </div>
       </div>
 
-      <div class="accordion-item">
-        <button class="accordion-question" onclick="toggleAccordion(this)">
-          À quoi sert le réglage de créativité ?
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-answer">
-          <div class="accordion-answer-inner">
-            Le curseur va de 0 à 1.5 et contrôle le degré d'imprévisibilité des réponses :
-            <ul>
-              <li><strong>0 à 0.3</strong> : réponses précises et factuelles, idéal pour l'analyse, les résumés, les calculs.</li>
-              <li><strong>0.4 à 0.7</strong> : équilibre entre fiabilité et originalité, rédaction, conversation, recommandations.</li>
-              <li><strong>0.8 à 1.5</strong> : idées variées et inattendues, brainstorming, concepts créatifs, exploration.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-question" onclick="toggleAccordion(this)">
-          Qu'est-ce que la réflexion approfondie ?
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="accordion-answer">
-          <div class="accordion-answer-inner">
-            Le modèle prend le temps de structurer son raisonnement avant de répondre. Les réponses sont plus précises sur les sujets complexes. En contrepartie : plus lent, et plus gourmand en tokens. À réserver aux tâches qui le méritent.
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- AGENTS -->
@@ -906,12 +798,12 @@
           <div class="accordion-answer-inner">
             <ol>
               <li>Cliquez sur "+ Créer un nouvel assistant"</li>
-              <li>Renseignez le nom, la catégorie (Créa / Stratégique / Production / Média / Général), le fournisseur et le modèle</li>
+              <li>Renseignez le nom, la catégorie (Conception & écriture / Stratégie / Gestion de projet / Data & finance / Production / Expertises digitales), le fournisseur et le modèle</li>
               <li>Rédigez vos instructions dans le champ dédié, en markdown, en suivant une structure claire</li>
               <li>Cliquez sur "Créer"</li>
               <li>Une fois sauvegardé, vous pouvez uploader vos fichiers de référence</li>
             </ol>
-            Ces étapes sont détaillées et illustrées pas à pas dans le How To. Pour maîtriser la rédaction de prompts et d'instructions, suivez la formation <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="color:#d13f3f;text-decoration:none;font-weight:600;">Prof IA →</a>
+            Ces étapes sont détaillées et illustrées pas à pas dans le How To. Pour maîtriser la rédaction de prompts et d'instructions, suivez la formation <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="color:#e33f4f;text-decoration:none;font-weight:600;">Prof IA →</a>
             <a class="go-article" onclick="goToArticle('assistant', 0)">
               Lire l'article : Créer un assistant de A à Z
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -941,7 +833,7 @@
         </button>
         <div class="accordion-answer">
           <div class="accordion-answer-inner">
-            Deux niveaux de mémoire par assistant :
+            L'assistant retient des informations d'une conversation à l'autre, pour éviter d'avoir à les répéter à chaque échange. Deux niveaux de mémoire par assistant :
             <ul>
               <li><strong>Mémoire partagée</strong> : visible par toutes les personnes qui ont accès à l'assistant. Utile pour stocker des règles ou du contexte commun.</li>
               <li><strong>Mes mémoires</strong> : personnelles, propres à votre usage de cet assistant. Non visibles par les autres.</li>
@@ -987,7 +879,7 @@
         <div class="accordion-answer">
           <div class="accordion-answer-inner">
             Un skill est une instruction réutilisable que vous pouvez attacher à un assistant pour lui donner une compétence spécifique (un format de restitution, une méthodologie, un formalisme client). Vous pouvez les créer depuis la section Skills, les partager par export/import, et les activer sur un assistant via ses Outils avancés. Il est aussi possible d'invoquer un skill directement dans une conversation en tapant <span class="tag">$</span> dans la barre de saisie.
-            <div class="note">Fonctionnalité avancée, en cours de stabilisation. Pour la majorité des usages, les instructions du system prompt suffisent.</div>
+            <div class="note">Les skills peuvent déjà être activés pour un assistant, même si c'est pour l'instant situé dans les options avancées.</div>
           </div>
         </div>
       </div>
@@ -1036,7 +928,7 @@
           </svg>
         </div>
         <div style="font-size:20px;font-weight:600;color:#f0f0f0;letter-spacing:-0.3px;">How To</div>
-        <div style="font-size:13px;color:#666;margin-top:4px;">Guide Vermeer Chat</div>
+        <div style="font-size:14px;font-weight:500;color:#888;margin-top:4px;">Guide Vermeer Chat</div>
       </div>
 
       <div class="howto-search-wrap">
@@ -1050,10 +942,10 @@
         <div class="howto-card-header">
           <div>
             <h3>Créer un assistant de A à Z</h3>
-            <p class="howto-preview">Du formulaire vierge à l'assistant partagé : identité, moteur, niveau de créativité, instructions système, fichiers de référence et partage avec l'équipe.</p>
+            <p class="howto-preview">Du formulaire vierge à l'assistant partagé : identité, moteur, instructions système, fichiers de référence et partage avec l'équipe.</p>
             <div class="howto-card-meta">
               <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~8 min</span>
-              <span>9 étapes</span>
+              <span>8 étapes</span>
             </div>
           </div>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1077,8 +969,8 @@
       <div class="howto-card" onclick="openHowtoArticle(2)" style="cursor:pointer;">
         <div class="howto-card-header">
           <div>
-            <h3>Le prompt engineering</h3>
-            <p class="howto-preview">Les principes clés du prompt engineering et accès à la formation Prof IA pour aller plus loin.</p>
+            <h3>Maîtriser l'art du prompt</h3>
+            <p class="howto-preview">Les principes clés pour bien écrire vos prompts et accès à la formation Prof IA pour aller plus loin.</p>
             <div class="howto-card-meta">
               <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10l4.5 4.5"/><circle cx="12" cy="12" r="10"/></svg> ~2 min</span>
               <span>+ formation Prof IA</span>
@@ -1126,7 +1018,7 @@
         <div class="step-card">
           <div class="step-card-header"><span class="step-pill">1</span>Lancer la création</div>
           <div class="step-card-body">
-            <p>Dans le panneau de gauche, cliquez sur <span class="tag">+ Créer un nouvel assistant</span>. Un formulaire vierge s'ouvre. Vous retrouverez tous vos assistants existants via <strong>Mes assistants</strong>, et ceux partagés par l'agence via la <strong>Marketplace</strong>.</p>
+            <p>Dans le panneau de gauche, cliquez sur <span class="tag">+ Créer un nouvel assistant</span>. Un formulaire vierge s'ouvre. Vous retrouverez tous vos assistants existants via <strong>Mes assistants</strong>, et ceux partagés par l'agence ou par vos collègues via la <strong>Marketplace</strong>.</p>
           </div>
         </div>
 
@@ -1136,19 +1028,19 @@
             <div class="figure">
               <svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="0" width="480" height="220" rx="10" fill="#141414" stroke="#2a2a2a"/>
-                <text x="20" y="30" class="s-label">Nom<tspan fill="#d13f3f">*</tspan></text>
+                <text x="20" y="30" class="s-label">Nom<tspan fill="#e33f4f">*</tspan></text>
                 <rect x="20" y="38" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
                 <text x="36" y="59" class="s-sub">Facultatif : Le nom de l'assistant</text>
                 <text x="20" y="94" class="s-label">Description</text>
                 <rect x="20" y="102" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
                 <text x="36" y="123" class="s-sub">Décrivez votre Assistant ici (facultatif)</text>
-                <text x="20" y="158" class="s-label">Catégorie<tspan fill="#d13f3f">*</tspan></text>
+                <text x="20" y="158" class="s-label">Catégorie<tspan fill="#e33f4f">*</tspan></text>
                 <rect x="20" y="166" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
-                <text x="48" y="187" class="s-sub" fill="#ccc">&#128450;  Général</text>
+                <text x="48" y="187" class="s-sub" fill="#ccc">&#9986;  Conception &amp; écriture</text>
                 <text x="442" y="187" class="s-sub" fill="#666">&#x25BE;</text>
               </svg>
             </div>
-            <p>Renseignez le <strong>nom</strong> et une <strong>description</strong>. Choisissez une <strong>catégorie</strong> (Créa, Stratégique, Production, Média ou Général).</p>
+            <p>Renseignez le <strong>nom</strong> et une <strong>description</strong>. Choisissez une <strong>catégorie</strong> (Conception & écriture, Stratégie, Gestion de projet, Data & finance, Production ou Expertises digitales).</p>
             <div class="note"><strong>Astuce.</strong> Un nom explicite vaut mieux qu'un nom malin. « Générateur de piliers éditoriaux » se retrouve, « ÉditoBot 3000 » se perd.</div>
           </div>
         </div>
@@ -1159,11 +1051,11 @@
             <div class="figure">
               <svg viewBox="0 0 480 156" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="0" width="480" height="156" rx="10" fill="#141414" stroke="#2a2a2a"/>
-                <text x="20" y="30" class="s-label">Fournisseur<tspan fill="#d13f3f">*</tspan></text>
+                <text x="20" y="30" class="s-label">Fournisseur<tspan fill="#e33f4f">*</tspan></text>
                 <rect x="20" y="38" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
                 <text x="36" y="59" class="s-sub" fill="#ccc">Anthropic</text>
                 <text x="442" y="59" class="s-sub" fill="#666">&#x25BE;</text>
-                <text x="20" y="94" class="s-label">Modèle<tspan fill="#d13f3f">*</tspan></text>
+                <text x="20" y="94" class="s-label">Modèle<tspan fill="#e33f4f">*</tspan></text>
                 <rect x="20" y="102" width="440" height="32" rx="6" fill="#1e1e1e" stroke="#333"/>
                 <text x="36" y="123" class="s-sub" fill="#ccc">Claude Opus 4.7 (Puissant)</text>
                 <text x="442" y="123" class="s-sub" fill="#666">&#x25BE;</text>
@@ -1175,46 +1067,12 @@
               <li><strong>Claude</strong> pour le complexe : documents longs, nuance éditoriale.</li>
               <li><strong>Gemini</strong> pour le rapide et le visuel.</li>
             </ul>
+            <div class="note"><strong>À noter.</strong> Le choix du modèle influence le coût des requêtes, sans être le seul facteur (fichiers de référence, longueur des échanges, etc. entrent aussi en jeu).</div>
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">4</span>Régler le niveau de créativité</div>
-          <div class="step-card-body">
-            <div class="figure">
-              <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
-                <text x="30" y="28" class="s-label">Créativité de la réponse</text>
-                <rect x="290" y="12" width="44" height="22" rx="11" fill="#2a2a2a" stroke="#444"/>
-                <text x="312" y="28" class="s-sub" text-anchor="middle" fill="#ccc">1.00</text>
-                <rect x="30" y="46" width="370" height="5" rx="2.5" fill="#d13f3f"/>
-                <rect x="400" y="46" width="30" height="5" rx="2.5" fill="#333"/>
-                <circle cx="396" cy="48" r="9" fill="#1a1a1a" stroke="#888" stroke-width="2"/>
-                <text x="30" y="78" class="s-sub" fill="#9cc3ee">0 - 0.3</text>
-                <text x="30" y="94" class="s-sub">Factuel : analyse, résumés, calculs</text>
-                <text x="200" y="78" class="s-sub" fill="#e8c97a">0.4 - 0.7</text>
-                <text x="200" y="94" class="s-sub">Équilibré : rédaction, conseil</text>
-                <text x="370" y="78" class="s-sub" fill="#e8a5a5">0.8 - 1.5</text>
-                <text x="370" y="94" class="s-sub">Créatif : idéation, concepts</text>
-                <g transform="translate(30,118)">
-                  <text x="0" y="-4" class="s-label">Réflexion approfondie</text>
-                  <rect x="0" y="6" width="36" height="20" rx="10" fill="#d13f3f"/>
-                  <circle cx="22" cy="16" r="7.5" fill="#fff"/>
-                  <text x="46" y="20" class="s-sub" fill="#888">Le modèle structure sa pensée</text>
-                </g>
-                <g transform="translate(30,162)">
-                  <text x="0" y="-4" class="s-label">Recherche web</text>
-                  <rect x="0" y="6" width="36" height="20" rx="10" fill="#d13f3f"/>
-                  <circle cx="22" cy="16" r="7.5" fill="#fff"/>
-                  <text x="46" y="20" class="s-sub" fill="#888">L'assistant peut consulter des sources en ligne</text>
-                </g>
-              </svg>
-            </div>
-            <p>Trois réglages complémentaires pour affiner le comportement du moteur.</p>
-          </div>
-        </div>
-
-        <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">5</span>Rédiger les instructions (system prompt)</div>
+          <div class="step-card-header"><span class="step-pill">4</span>Rédiger les instructions (system prompt)</div>
           <div class="step-card-body">
             <div class="figure">
               <svg viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
@@ -1224,7 +1082,7 @@
                 <text x="36" y="57" class="s-sub">Les instructions système que l'assistant utilise</text>
               </svg>
             </div>
-            <p>C'est <strong>le coeur de l'assistant</strong>. Une structure simple et éprouvée :</p>
+            <p><strong>Les instructions</strong>, c'est l'ensemble des consignes données à l'assistant pour qu'il produise une réponse satisfaisante : son rôle, sa mission, ce qu'il doit faire et ne pas faire, le format attendu. Une structure simple et éprouvée :</p>
             <div class="code-block"><span class="c-head"># RÔLE</span>
 Qui est l'assistant, à qui il s'adresse.
 
@@ -1242,12 +1100,13 @@ Ce qu'il ne fait pas, où rediriger.
 
 <span class="c-head"># FORMAT</span>
 Langue, longueur, structure, ton.</div>
-            <div class="note"><strong>Restez sous ~400 mots.</strong> Au-delà, le modèle dilue les premières consignes.</div>
+            <div class="note"><strong>Astuce.</strong> N'hésitez pas à demander à un LLM de générer ou d'affiner vos instructions pour vous.</div>
+            <div class="note"><strong>Un prompt long et précis vaut mieux qu'un prompt court et vague.</strong> Un prompt court qui oblige l'assistant à beaucoup chercher ou déduire ralentit et fragilise la réponse. Comme c'est le coeur de l'assistant, ça mérite d'itérer jusqu'à obtenir le résultat souhaité.</div>
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">6</span>Nourrir l'assistant : fichiers de référence (RAG)</div>
+          <div class="step-card-header"><span class="step-pill">5</span>Nourrir l'assistant : fichiers de référence (RAG)</div>
           <div class="step-card-body">
             <div class="figure">
               <svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
@@ -1263,13 +1122,14 @@ Langue, longueur, structure, ton.</div>
             </div>
             <p>Les fichiers de référence forment le <strong>corpus documentaire</strong> de l'assistant. Le system prompt décrit le <strong>comportement</strong>, le RAG porte la <strong>connaissance</strong>. Limite : <strong>10 fichiers maximum</strong> par assistant.</p>
             <div class="note"><strong>Attention.</strong> Les fichiers de référence sont retraités à chaque message, ce qui impacte directement votre consommation de tokens. 10 fichiers Excel chargés = un coût multiplié à chaque échange. Chargez uniquement ce dont l'assistant a besoin et précisez dans vos instructions quels fichiers consulter en priorité.</div>
+            <div class="note"><strong>Le format compte.</strong> Certains types de fichiers sont beaucoup plus facilement lisibles et économes que d'autres : un fichier texte type markdown sera plus efficace qu'un PPT, par exemple.</div>
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">7</span>Gérer la mémoire</div>
+          <div class="step-card-header"><span class="step-pill">6</span>Gérer la mémoire</div>
           <div class="step-card-body">
-            <p>Deux niveaux de mémoire :</p>
+            <p>L'assistant retient des informations d'une conversation à l'autre, pour éviter d'avoir à les répéter à chaque échange. Deux niveaux de mémoire :</p>
             <ul>
               <li><strong>Mémoire partagée</strong> : visible par tous ceux qui ont accès à l'assistant.</li>
               <li><strong>Mes mémoires</strong> : personnelles, propres à votre usage.</li>
@@ -1278,14 +1138,14 @@ Langue, longueur, structure, ton.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">8</span>Versionner et restaurer</div>
+          <div class="step-card-header"><span class="step-pill">7</span>Versionner et restaurer</div>
           <div class="step-card-body">
             <p>Chaque modification crée une <strong>version horodatée</strong>. Ouvrez l'historique via le bouton <span class="tag">Version</span> et restaurez n'importe quel état précédent.</p>
           </div>
         </div>
 
         <div class="step-card">
-          <div class="step-card-header"><span class="step-pill">9</span>Partager avec l'équipe</div>
+          <div class="step-card-header"><span class="step-pill">8</span>Partager avec l'équipe</div>
           <div class="step-card-body">
             <p>Partagez via le bouton dédié : l'assistant rejoint la <strong>Marketplace</strong> et devient utilisable par vos collègues.</p>
             <div class="note"><strong>Bonne hygiène de partage.</strong> Limitez les droits de gestion à une ou deux personnes. Laissez les utilisateurs finaux en simple lecture. Gardez le corpus RAG à jour.</div>
@@ -1343,7 +1203,7 @@ Langue, longueur, structure, ton.</div>
             <!-- buttons -->
             <rect x="380" y="302" width="72" height="30" rx="6" fill="transparent" stroke="#444"/>
             <text x="416" y="322" class="s-sub" text-anchor="middle" fill="#ccc">Annuler</text>
-            <rect x="462" y="302" width="62" height="30" rx="6" fill="#d13f3f" opacity="0.7"/>
+            <rect x="462" y="302" width="62" height="30" rx="6" fill="#e33f4f" opacity="0.7"/>
             <text x="493" y="322" class="s-sub" text-anchor="middle" fill="#fff">Créer</text>
           </svg>
           <div class="figure-caption">La fenêtre de création d'un skill</div>
@@ -1376,6 +1236,7 @@ Langue, longueur, structure, ton.</div>
           <li>Décrivez le savoir-faire, pas juste la tâche : c'est <em>votre</em> manière de faire qui a de la valeur.</li>
           <li>Donnez un exemple de sortie attendue : il vaut dix lignes de description.</li>
         </ul>
+        <div class="note"><strong>Astuce.</strong> Comme pour les assistants, faites générer une première version par un LLM, en vous appuyant sur une base de documentation, voire la transcription d'un brief à l'oral.</div>
         <div class="callout"><strong>Par où commencer ?</strong> Listez les tâches que vous répétez chaque semaine avec les mêmes exigences de format. Ce sont vos premiers skills, ceux qui vous feront gagner le plus de temps.</div>
 
         <h2>Importer et partager</h2>
@@ -1385,10 +1246,11 @@ Langue, longueur, structure, ton.</div>
           <li>un fichier <span class="tag">.zip</span> ou <span class="tag">.skill</span> contenant un <span class="tag">SKILL.md</span>.</li>
         </ul>
         <p>Votre collègue clique sur <strong>Importer un skill</strong>, dépose le fichier, et la compétence rejoint son espace. C'est ainsi qu'une bonne pratique individuelle devient un standard d'équipe.</p>
+        <div class="note">Le partage de skills n'est pas ouvert à tout le monde : seuls certains utilisateurs ont la possibilité de partager des skills avec d'autres.</div>
 
         <h2>Activer un skill sur un assistant</h2>
         <p>Dans les <strong>Outils avancés</strong> de l'assistant, activez l'interrupteur <span class="tag">Skills</span>, puis <span class="tag">Add Skills</span> pour choisir ceux à mobiliser.</p>
-        <div class="callout"><strong>Note.</strong> La fonctionnalité skills est en cours de stabilisation. En attendant qu'elle soit pleinement active, vous pouvez toujours intégrer la méthode directement dans les instructions de l'assistant.</div>
+        <div class="callout"><strong>Note.</strong> Les skills peuvent déjà être activés pour un assistant, même si c'est pour l'instant situé dans les options avancées.</div>
 
         <div class="next-prev">
           <button class="np-btn" onclick="openHowtoArticle(0)">
@@ -1397,7 +1259,7 @@ Langue, longueur, structure, ton.</div>
           </button>
           <button class="np-btn right" onclick="openHowtoArticle(2)">
             <div class="np-label">Suivant</div>
-            <div class="np-title">Le prompt engineering →</div>
+            <div class="np-title">Maîtriser l'art du prompt →</div>
           </button>
       </div>
 
@@ -1407,24 +1269,25 @@ Langue, longueur, structure, ton.</div>
         <div class="howto-breadcrumb">
           <a onclick="backToHowtoGrid()">How To</a>
           <span>&#8250;</span>
-          <span>Le prompt engineering</span>
+          <span>Maîtriser l'art du prompt</span>
         </div>
         <button class="howto-back-btn" onclick="backToHowtoGrid()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
           Retour
         </button>
-        <h1>Le prompt engineering</h1>
+        <h1>Maîtriser l'art du prompt</h1>
         <p class="article-intro">Savoir parler à un modèle IA, ça s'apprend. Plutôt que de survoler le sujet ici, on vous a préparé une vraie formation.</p>
 
         <div style="background:#1e1e1e;border:1.5px solid #333;border-radius:14px;padding:28px;margin:24px 0;text-align:center;">
-          <div style="font-size:11px;color:#d13f3f;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Formation recommandée</div>
+          <div style="font-size:11px;color:#e33f4f;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Formation recommandée</div>
           <div style="font-size:20px;font-weight:700;color:#f0f0f0;margin-bottom:8px;">Prof IA</div>
           <p style="color:#888;font-size:13px;line-height:1.6;max-width:440px;margin:0 auto 20px;">La formation complète pour maîtriser le prompt engineering : structure, ton, exemples, itération, garde-fous. Indispensable avant de créer vos premiers assistants.</p>
-          <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="display:inline-block;padding:12px 28px;background:#d13f3f;color:#fff;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:opacity 0.15s;">Accéder à la formation →</a>
+          <a href="https://app.sectionai.com/p/basic-ai-proficiency" target="_blank" style="display:inline-block;padding:12px 28px;background:#e33f4f;color:#fff;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:opacity 0.15s;">Accéder à la formation →</a>
         </div>
 
         <h2>En résumé</h2>
-        <p>Un bon prompt repose sur trois principes : <strong>être structuré</strong> (rôle, objectif, tâches, limites, format), <strong>être direct</strong> (impératif, positif, concret) et <strong>poser des garde-fous</strong> (périmètre, confidentialité, gestion de l'ambiguïté). Visez moins de 400 mots pour un system prompt.</p>
+        <div class="note"><strong>Prompt vs system prompt.</strong> Un prompt, c'est le message que vous envoyez à un modèle dans une conversation. Le <strong>system prompt</strong>, c'est un prompt particulier : les instructions que vous rédigez une fois pour toutes en configurant un assistant, et qui s'appliquent à chacun de ses échanges.</div>
+        <p>Un bon prompt repose sur trois principes : <strong>être structuré</strong> (rôle, objectif, tâches, limites, format), <strong>être direct</strong> (impératif, positif, concret) et <strong>poser des garde-fous</strong> (périmètre, confidentialité, gestion de l'ambiguïté). Un prompt long et précis vaut mieux qu'un prompt court et vague : ça mérite d'itérer jusqu'à obtenir le résultat souhaité.</p>
         <p>Le system prompt décrit le <strong>comportement</strong>, les fichiers de référence portent la <strong>connaissance</strong>. Ne mélangez pas les deux.</p>
 
         <div class="next-prev">
@@ -1451,52 +1314,22 @@ Langue, longueur, structure, ton.</div>
           Retour
         </button>
         <h1>Gestion de budget</h1>
-        <p class="article-intro">Votre budget, vos contacts et les seuils de la plateforme.</p>
+        <p class="article-intro">Votre budget, l'utilisation raisonnée et les seuils de la plateforme.</p>
+
+        <h2>Utilisation raisonnée</h2>
+        <p>Quelques réflexes simples permettent de garder une consommation maîtrisée :</p>
+        <ul>
+          <li>Utilisez les <strong>bons modèles</strong> pour la tâche : un modèle basique suffit souvent, montez en puissance seulement si nécessaire.</li>
+          <li>Évitez de charger des <strong>fichiers volumineux mal optimisés</strong> en référence : privilégiez des fichiers légers et bien structurés.</li>
+          <li>Ne faites pas faire de <strong>travail inutile dans les instructions</strong> : un system prompt trop large fait consommer l'assistant pour rien.</li>
+        </ul>
 
         <h3>Vos contacts par entité</h3>
-        <p>Pour toute demande liée à votre budget, contactez l'assistant de votre entité :</p>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0;">
-          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
-            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Prose on Pixels</div>
-            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
-            <div style="min-height:60px;">
-              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Colin Lhernould</div>
-              <a href="mailto:colin.lhernould@proseonpixels.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;margin-bottom:6px;">colin.lhernould@proseonpixels.com</a>
-              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Lobna Diab-Benterki</div>
-              <a href="mailto:lobna.diab-benterki@proseonpixels.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;">lobna.diab-benterki<br>@proseonpixels.com</a>
-            </div>
-            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Benjamin Coton</div>
-            <a href="mailto:benjamin.coton@ext.betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">benjamin.coton@ext.betc.com</a>
-            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Pierre-Charles Hegron</div>
-            <a href="mailto:pierre-charles.hegron@betc.com" style="font-size:11px;color:#888;text-decoration:none;">pierre-charles.hegron@betc.com</a>
-          </div>
-          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
-            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC</div>
-            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contact</div>
-            <div style="min-height:60px;">
-              <div style="font-size:13px;color:#999;font-style:italic;">[nom et email à venir]</div>
-            </div>
-            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Charles Bonneaux</div>
-            <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">charles.bonneaux@betc.com</a>
-            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Charles Bonneaux</div>
-            <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;">charles.bonneaux@betc.com</a>
-          </div>
-          <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
-            <div style="font-size:13px;color:#d13f3f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC Fullsix</div>
-            <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
-            <div style="min-height:60px;">
-              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Chloé Amgar</div>
-              <a href="mailto:chloe.amgar@betc.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;margin-bottom:6px;">chloe.amgar@betc.com</a>
-              <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Stéphane Tyrmi</div>
-              <a href="mailto:stephane.tyrmi@betc.com" style="font-size:12px;color:#d13f3f;text-decoration:none;display:block;">stephane.tyrmi@betc.com</a>
-            </div>
-            <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Jonathan Casseron</div>
-            <a href="mailto:jonathan.casseron@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">jonathan.casseron@betc.com</a>
-            <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Florence Lezoray</div>
-            <a href="mailto:florence.lezoray@betc.com" style="font-size:11px;color:#888;text-decoration:none;">florence.lezoray@betc.com</a>
-          </div>
-        </div>
+        <p>Pour toute demande liée à votre budget, contactez l'assistant de votre entité.</p>
+        <a class="go-article" onclick="switchView('contacts')">
+          Voir les contacts par entité
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
 
         <div class="callout"><strong>Le bon réflexe.</strong> Avant de relever un plafond, vérifiez que la consommation vient d'un usage utile et non d'un assistant mal configuré.</div>
 
@@ -1510,7 +1343,7 @@ Langue, longueur, structure, ton.</div>
           <svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg">
             <text x="280" y="28" class="s-label" text-anchor="middle">Budget mensuel</text>
             <rect x="140" y="42" width="280" height="16" rx="8" fill="#333"/>
-            <rect x="140" y="42" width="108" height="16" rx="8" fill="#d13f3f"/>
+            <rect x="140" y="42" width="108" height="16" rx="8" fill="#e33f4f"/>
             <text x="280" y="78" class="s-sub" text-anchor="middle">$3.86 / $10.00</text>
           </svg>
           <div class="figure-caption">Les principaux seuils, visibles dans l'interface</div>
@@ -1519,7 +1352,7 @@ Langue, longueur, structure, ton.</div>
         <div class="next-prev" style="justify-content:flex-start;">
           <button class="np-btn" style="flex:none;max-width:280px;" onclick="openHowtoArticle(2)">
             <div class="np-label">Précédent</div>
-            <div class="np-title">← Le prompt engineering</div>
+            <div class="np-title">← Maîtriser l'art du prompt</div>
           </button>
         </div>
 
@@ -1531,6 +1364,67 @@ Langue, longueur, structure, ton.</div>
 </div> <!-- /howto-landing -->
   </div> <!-- /view-howto -->
 
+  <!-- ===== CONTACTS VIEW ===== -->
+  <div class="view" id="view-contacts">
+    <div class="content">
+      <div class="hero">
+        <div class="hero-icon" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#111;border-radius:16px;margin-bottom:12px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h1>Contacts utiles</h1>
+        <p>Pour toute demande liée à votre budget ou à votre entité, contactez la personne concernée.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0 0 40px;">
+        <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+          <div style="font-size:13px;color:#e33f4f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Prose on Pixels</div>
+          <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
+          <div style="min-height:60px;">
+            <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Colin Lhernould</div>
+            <a href="mailto:colin.lhernould@proseonpixels.com" style="font-size:12px;color:#e33f4f;text-decoration:none;display:block;margin-bottom:6px;">colin.lhernould@proseonpixels.com</a>
+            <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Lobna Diab-Benterki</div>
+            <a href="mailto:lobna.diab-benterki@proseonpixels.com" style="font-size:12px;color:#e33f4f;text-decoration:none;display:block;">lobna.diab-benterki<br>@proseonpixels.com</a>
+          </div>
+          <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Benjamin Coton</div>
+          <a href="mailto:benjamin.coton@ext.betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">benjamin.coton@ext.betc.com</a>
+          <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Pierre-Charles Hegron</div>
+          <a href="mailto:pierre-charles.hegron@betc.com" style="font-size:11px;color:#888;text-decoration:none;">pierre-charles.hegron@betc.com</a>
+        </div>
+        <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+          <div style="font-size:13px;color:#e33f4f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC</div>
+          <div style="font-size:13px;color:#666;margin-bottom:4px;">Contact</div>
+          <div style="min-height:60px;">
+            <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Stéphane Langouet</div>
+            <a href="mailto:stephane.langouet@betc.com" style="font-size:12px;color:#e33f4f;text-decoration:none;display:block;">stephane.langouet@betc.com</a>
+          </div>
+          <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Charles Bonneaux</div>
+          <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">charles.bonneaux@betc.com</a>
+          <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Charles Bonneaux</div>
+          <a href="mailto:charles.bonneaux@betc.com" style="font-size:11px;color:#888;text-decoration:none;">charles.bonneaux@betc.com</a>
+        </div>
+        <div style="background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:20px;display:flex;flex-direction:column;">
+          <div style="font-size:13px;color:#e33f4f;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">BETC Fullsix</div>
+          <div style="font-size:13px;color:#666;margin-bottom:4px;">Contacts</div>
+          <div style="min-height:60px;">
+            <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Chloé Amgar</div>
+            <a href="mailto:chloe.amgar@betc.com" style="font-size:12px;color:#e33f4f;text-decoration:none;display:block;margin-bottom:6px;">chloe.amgar@betc.com</a>
+            <div style="font-size:13px;color:#f0f0f0;font-weight:500;">Stéphane Tyrmi</div>
+            <a href="mailto:stephane.tyrmi@betc.com" style="font-size:12px;color:#e33f4f;text-decoration:none;display:block;">stephane.tyrmi@betc.com</a>
+          </div>
+          <div style="border-top:1px solid #2a2a2a;margin-top:auto;padding-top:10px;font-size:12px;color:#ccc;"><strong>Entity Manager</strong><br>Jonathan Casseron</div>
+          <a href="mailto:jonathan.casseron@betc.com" style="font-size:11px;color:#888;text-decoration:none;margin-bottom:8px;">jonathan.casseron@betc.com</a>
+          <div style="font-size:12px;color:#ccc;"><strong>Gestionnaire Financier</strong><br>Florence Lezoray</div>
+          <a href="mailto:florence.lezoray@betc.com" style="font-size:11px;color:#888;text-decoration:none;">florence.lezoray@betc.com</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- /view-contacts -->
+
   <div class="footer" style="border-top:1px solid #333;padding:16px 0;text-align:center;font-size:13px;color:#888;">
     Powered by <a href="https://vermeer.ai" target="_blank" style="color:#aaa;text-decoration:none;">Vermeer.ai</a> &nbsp;<span style="color:#555;">|</span>&nbsp; <a href="https://vermeer.ai/cookie-policy" target="_blank" style="color:#888;text-decoration:none;">Politique de confidentialit&eacute;</a> &nbsp;<span style="color:#555;">|</span>&nbsp; <a href="https://vermeer.ai/legal-notice" target="_blank" style="color:#888;text-decoration:none;">Conditions d'utilisation</a>
   </div>
@@ -1538,51 +1432,74 @@ Langue, longueur, structure, ton.</div>
 </div>
 
 <script>
+  // ----- apply a navigation state to the DOM (no history changes here) -----
+  function applyState(state, scroll) {
+    state = state || { view: 'howto' };
+
+    // view-level (How To vs FAQ vs Contacts)
+    document.getElementById('view-faq').classList.toggle('visible', state.view === 'faq');
+    document.getElementById('view-howto').classList.toggle('visible', state.view === 'howto');
+    document.getElementById('view-contacts').classList.toggle('visible', state.view === 'contacts');
+    document.getElementById('tab-faq').classList.toggle('active', state.view === 'faq');
+    document.getElementById('tab-howto').classList.toggle('active', state.view === 'howto');
+    document.getElementById('tab-contacts').classList.toggle('active', state.view === 'contacts');
+
+    if (state.view === 'howto') {
+      var isArticle = typeof state.article === 'number';
+      document.querySelector('.howto-grid').style.display = isArticle ? 'none' : '';
+      document.querySelector('.howto-landing-header').style.display = isArticle ? 'none' : '';
+      var searchWrap = document.querySelector('.howto-search-wrap');
+      if (searchWrap) searchWrap.style.display = isArticle ? 'none' : '';
+      var articles = document.querySelectorAll('.howto-article-page');
+      articles.forEach(function(a) { a.style.display = 'none'; });
+      if (isArticle && articles[state.article]) articles[state.article].style.display = 'block';
+    }
+
+    if (scroll !== false) window.scrollTo(0, 0);
+  }
+
   // ----- howto card → full page -----
   function openHowtoArticle(idx) {
-    document.querySelector('.howto-grid').style.display = 'none';
-    document.querySelector('.howto-landing-header').style.display = 'none';
-    var searchWrap = document.querySelector('.howto-search-wrap');
-    if (searchWrap) searchWrap.style.display = 'none';
-    var articles = document.querySelectorAll('.howto-article-page');
-    articles.forEach(function(a) { a.style.display = 'none'; });
-    articles[idx].style.display = 'block';
-    window.scrollTo(0, 0);
+    var state = { view: 'howto', article: idx };
+    history.pushState(state, '');
+    applyState(state);
   }
   function backToHowtoGrid() {
-    document.querySelector('.howto-grid').style.display = '';
-    document.querySelector('.howto-landing-header').style.display = '';
-    var searchWrap = document.querySelector('.howto-search-wrap');
-    if (searchWrap) searchWrap.style.display = '';
-    document.querySelectorAll('.howto-article-page').forEach(function(a) { a.style.display = 'none'; });
-    window.scrollTo(0, 0);
+    var state = { view: 'howto' };
+    history.pushState(state, '');
+    applyState(state);
   }
 
   // ----- howto search -----
   function filterHowtoCards() {
     var query = document.getElementById('howtoSearchInput').value.toLowerCase();
     var cards = document.querySelectorAll('.howto-card');
-    cards.forEach(function(card) {
-      var text = card.textContent.toLowerCase();
-      card.style.display = text.includes(query) ? '' : 'none';
+    var articles = document.querySelectorAll('.howto-article-page');
+    cards.forEach(function(card, i) {
+      var cardText = card.textContent.toLowerCase();
+      var articleText = articles[i] ? articles[i].textContent.toLowerCase() : '';
+      var match = cardText.includes(query) || articleText.includes(query);
+      card.style.display = match ? '' : 'none';
     });
   }
 
   // ----- view switching -----
   function switchView(v) {
-    document.getElementById('view-faq').classList.toggle('visible', v === 'faq');
-    document.getElementById('view-howto').classList.toggle('visible', v === 'howto');
-    document.getElementById('tab-faq').classList.toggle('active', v === 'faq');
-    document.getElementById('tab-howto').classList.toggle('active', v === 'howto');
-    if (v === 'howto') { backToHowtoGrid(); }
-    window.scrollTo(0, 0);
+    var state = { view: v };
+    history.pushState(state, '');
+    applyState(state);
   }
+
+  // ----- restore state on browser back/forward -----
+  window.addEventListener('popstate', function(e) {
+    applyState(e.state);
+  });
+  // set the initial history entry so the very first back/forward has something to land on
+  history.replaceState({ view: 'howto' }, '');
 
   // ----- jump from a FAQ answer to a How To article -----
   function goToArticle(id, navIndex) {
-    switchView('howto');
-    const navEl = document.querySelectorAll('.doc-nav-item')[navIndex];
-    showArticle(id, navEl);
+    openHowtoArticle(navIndex);
   }
 
   // ----- FAQ scripts -----
@@ -1647,49 +1564,6 @@ Langue, longueur, structure, ton.</div>
 
     document.getElementById('emptyState').classList.toggle('visible', !anyVisible && !!query);
   }
-
-
-  // ----- How To scripts -----
-
-  function showArticle(id, navEl) {
-    document.querySelectorAll('.article').forEach(a => a.classList.remove('visible'));
-    document.getElementById('article-' + id).classList.add('visible');
-
-    document.querySelectorAll('.doc-nav-item').forEach(n => n.classList.remove('active'));
-    if (navEl) navEl.classList.add('active');
-
-    document.querySelector('.doc-content').scrollTo(0, 0);
-    window.scrollTo(0, 0);
-  }
-
-  // ----- make each article H2 section collapsible (toggle + arrow) -----
-  (function buildCollapsibleSections() {
-    const chevron = '<svg class="art-section-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
-    document.querySelectorAll('.article').forEach(article => {
-      const nodes = Array.from(article.childNodes);
-      let current = null;
-      nodes.forEach(node => {
-        if (node.nodeType === 1 && node.tagName === 'H2') {
-          // start a new collapsible section
-          const section = document.createElement('div');
-          section.className = 'art-section';
-          const header = document.createElement('div');
-          header.className = 'art-section-header';
-          header.innerHTML = node.outerHTML + chevron;
-          const body = document.createElement('div');
-          body.className = 'art-section-body';
-          section.appendChild(header);
-          section.appendChild(body);
-          article.insertBefore(section, node);
-          node.remove();
-          header.addEventListener('click', () => section.classList.toggle('collapsed'));
-          current = body;
-        } else if (current && !(node.nodeType === 1 && node.classList && node.classList.contains('next-prev'))) {
-          current.appendChild(node);
-        }
-      });
-    });
-  })();
 
 </script>
 
